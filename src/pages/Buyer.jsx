@@ -32,7 +32,7 @@ const Buyer = () => {
           <Typography variant="h5" className="title">Create an account</Typography>
           
           <FormControl component="fieldset" className="role-selection">
-            <Typography variant="subtitle1">Choose Your Role</Typography>
+            <Typography variant="subtitle1"> <br /> Choose Your Role</Typography>
             <RadioGroup row value={role} onChange={(e) => setRole(e.target.value)}>
               <FormControlLabel value="buyer" control={<Radio />} label="Buyer" />
               <FormControlLabel value="farmer" control={<Radio />} label="Farmer" />
@@ -54,6 +54,7 @@ const Buyer = () => {
 
             <Button type="submit" variant="contained" fullWidth className="submit-btn">Create Account</Button>
           </form>
+          <br />
 
           <Typography variant="body2" className="login-text">Already have an account? <a href="/login">Login</a></Typography>
         </Container>
