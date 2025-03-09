@@ -1,0 +1,427 @@
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+/* Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 350px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
+}
+
+.logo-container {
+  flex: 1;
+}
+
+.logo {
+  width: 110px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons img {
+  width: 22px;
+  cursor: pointer;
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-item img {
+  width: 28px;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .contact-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  background: #efe29c;
+  padding: 10px 0;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  font-weight: bold;
+}
+
+.nav-links li {
+  cursor: pointer;
+}
+
+.nav-links .active {
+  text-decoration: underline;
+}
+
+/* Responsive Navbar */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  text-align: center;
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+}
+
+.hero-overlay h4 {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.hero-overlay h1 {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: #1a9f3a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #15832e;
+}
+
+/* Responsive Hero Section */
+@media (max-width: 768px) {
+  .hero-overlay h1 {
+    font-size: 30px;
+  }
+  .btn {
+    font-size: 16px;
+    padding: 10px 25px;
+  }
+}
+
+/* Features Section */
+.features {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding: 50px 0;
+  flex-wrap: wrap;
+}
+
+.feature-box {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 320px;
+}
+
+.feature-title {
+  color: #1a9f3a;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.feature-box p {
+  margin-bottom: 15px;
+  color: #555;
+  font-size: 18px;
+}
+
+.feature-box img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Responsive Features */
+@media (max-width: 768px) {
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* About Section */
+.about {
+  display: flex;
+  justify-content: center;
+  padding: 20px 50px;
+  background: white;
+}
+
+.about-container {
+  display: flex;
+  max-width: 1200px;
+  gap: 60px;
+  align-items: center;
+}
+
+/* About Image */
+.about-image img {
+  width: 250px;
+  height: auto;
+  border-radius: 50%;
+  border: 5px solid #d0a246;
+}
+
+/* About Content */
+.about-content {
+  flex: 1;
+}
+
+.about-intro {
+  font-size: 20px;
+  color: #198c19;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.about-title {
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.highlight {
+  color: black;
+}
+
+.about-heading {
+  font-size: 30px;
+  color: #198c19;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.about-text {
+  font-size: 20px;
+  color: #444;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+/* Works Section */
+.works-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.works-icon img {
+  width: 90px;
+}
+
+.works-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.works-text {
+  font-size: 20px;
+  color: #444;
+}
+
+.works-list {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.works-list li {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Discover More Button */
+.discover-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #198c19;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.discover-btn:hover {
+  background: #146314;
+}
+
+/* Responsive About Section */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image img {
+    width: 300px;
+  }
+}
+
+.why-choose {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 50px;
+  background: white;
+}
+
+.why-choose-container {
+  display: flex;
+  max-width: 1100px;
+  gap: 40px;
+  align-items: center;
+}
+
+.why-choose-content {
+  flex: 1;
+}
+
+.why-intro {
+  font-size: 22px;
+  color: #d0a246;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.why-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.why-choose-content p {
+  font-size: 20px;
+  color: #444;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+.why-choose-image img {
+  width: 320px;
+  height: auto;
+  border-radius: 50%;
+  border: 5px solid #d0a246;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .why-choose-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .why-choose-image img {
+    width: 200px;
+  }
+}
+
+.services {
+  text-align: center;
+  padding: 30px 0; /* Reduced padding from 50px to 20px */
+  margin-top: -50px; /* Optional: Adjust negative margin to bring it closer */
+}
+
+
+.services-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.services-container {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.service-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  text-align: center;
+  width: 350px;
+  padding-bottom: 15px;
+}
+
+.service-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.service-card p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.nav-links a {
+  text-decoration: none; /* Removes underline */
+  color: inherit; /* Ensures it inherits the text color */
+}
