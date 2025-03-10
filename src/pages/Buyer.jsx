@@ -19,7 +19,6 @@ const Buyer = () => {
     if (selectedRole === "farmer") {
       navigate("/farmer"); // Navigate to Farmer.jsx
     }
-    
   };
 
   const handleChange = (e) => {
@@ -67,7 +66,11 @@ const Buyer = () => {
           </form>
           <br />
 
-          <Typography variant="body2" className="login-text">Already have an account? <a href="/login">Login</a></Typography>
+          {/* Use useNavigate for navigation */}
+          <Typography variant="body2" className="login-text">
+            Already have an account? 
+            <Button onClick={() => navigate("/buyerlogin")} className="login-btn">Login</Button>
+          </Typography>
         </Container>
       </div>
     </div>

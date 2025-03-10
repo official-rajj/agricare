@@ -20,6 +20,7 @@ import expertsAdvice from "./assets/experts-advice.png"; // Replace with actual 
 import Footer from "./pages/Footer"; // Import the Footer component
 import Buyer from "./pages/buyer";
 import Farmer from "./pages/Farmer";
+import BuyerLogin from "./pages/Buyerlogin";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/buyer" element={<Buyer />} />
         <Route path="/farmer" element={<Farmer />} />
+        <Route path="/buyerlogin" element={<BuyerLogin />} />
       </Routes>
     </Router>
   );
