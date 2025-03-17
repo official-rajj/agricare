@@ -1,0 +1,113 @@
+/* Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f5f5dc;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 220px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #333;
+    transition: background 0.3s ease;
+  }
+  
+  .menu-item:hover,
+  .menu-item.active {
+    background: #f8d16e;
+    font-weight: bold;
+  }
+  
+  .menu-icon {
+    margin-right: 10px;
+    color: #333;
+  }
+  
+  /* Main Content */
+  .main-content {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Header */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .highlight {
+    color: orange;
+  }
+  
+  /* User Info */
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-avatar {
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  /* Cards Section */
+  .cards-container {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .dashboard-card {
+    width: 30%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .dashboard-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-title {
+    text-align: center;
+    font-weight: bold;
+  }
+  

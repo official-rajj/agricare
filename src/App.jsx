@@ -22,6 +22,7 @@ import Buyer from "./pages/buyer";
 import Farmer from "./pages/Farmer";
 import BuyerLogin from "./pages/Buyerlogin";
 import FarmerLogin from "./pages/Farmerlogin";
+import FarmerDashboard from "./pages/FarmerDashboard";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
         <Route path="/farmer" element={<Farmer />} />
         <Route path="/buyerlogin" element={<BuyerLogin />} />
         <Route path="/farmerlogin" element={<FarmerLogin />} />
+        <Route path="/farmerdashboard" element={<FarmerDashboard />} />
       </Routes>
     </Router>
   );
