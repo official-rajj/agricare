@@ -21,6 +21,7 @@ import Footer from "./pages/Footer"; // Import the Footer component
 import Buyer from "./pages/buyer";
 import Farmer from "./pages/Farmer";
 import BuyerLogin from "./pages/Buyerlogin";
+import FarmerLogin from "./pages/Farmerlogin";
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/buyer" element={<Buyer />} />
         <Route path="/farmer" element={<Farmer />} />
         <Route path="/buyerlogin" element={<BuyerLogin />} />
+        <Route path="/farmerlogin" element={<FarmerLogin />} />
       </Routes>
     </Router>
   );

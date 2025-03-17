@@ -1,22 +1,21 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import { Container, Typography, FormControl, RadioGroup, FormControlLabel, Radio, TextField, Button } from "@mui/material";
-import farmerImage from "../assets/farmercreatepage.jpg"; // Ensure correct path
-import logo from "../assets/logo.png"; // Ensure correct path
-import "./Farmer.css";
+import farmerImage from "../assets/farmerloginimg.jpg"; // Ensure the correct path
+import logoImage from "../assets/logo.png"; // Ensure the correct path
+import "./Farmerlogin.css"; // Add a CSS file for styling
 
-const Farmer = () => {
-  const [role, setRole] = useState("farmer"); // Default role: Farmer
-  const [formData, setFormData] = useState({ name: "", phone: "", password: "" });
+const FarmerLogin = () => {
+  const [role, setRole] = useState("farmer");
+  const [formData, setFormData] = useState({ phone: "", password: "" });
 
   const navigate = useNavigate(); // Initialize navigation
-
   const handleRoleChange = (e) => {
     const selectedRole = e.target.value;
     setRole(selectedRole);
 
     if (selectedRole === "buyer") {
-      navigate("/buyer"); // Navigate to Buyer.jsx when Buyer is selected
+      navigate("/buyerlogin"); // Navigate to Farmer login page
     }
   };
 
@@ -26,48 +25,52 @@ const Farmer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted", { ...formData, role });
+    console.log("Login Submitted", { ...formData, role });
   };
 
   return (
-    <div className="farmer-container">
-      {/* Left side image */}
+    <div className="farmer-login-container">
+      {/* Left Image Section */}
       <div className="image-section">
-        <img src={farmerImage} alt="Farmer on tractor" className="farmer-img" />
+        <img src={farmerImage} alt="Farmer harvesting grapes" className="farmer-img" />
       </div>
 
-      {/* Right side form */}
+      {/* Right Login Form Section */}
       <div className="form-section">
         <Container maxWidth="sm" className="form-container">
-          <img src={logo} alt="AgriCare Logo" className="logo" />
-          <Typography variant="h5" className="title">Create an account</Typography>
+          
+          {/* Logo */}
+          <img src={logoImage} alt="Logo" className="logo" />
+          
+          {/* Title */}
+          <Typography variant="h5" className="title">Login Account</Typography>
 
           {/* Role Selection */}
           <FormControl component="fieldset" className="role-selection">
             <Typography variant="subtitle1">Choose Your Role</Typography>
             <RadioGroup row value={role} onChange={handleRoleChange}>
               <FormControlLabel value="buyer" control={<Radio />} label="Buyer" />
-              <FormControlLabel value="farmer" control={<Radio color="primary" />} label="Farmer" />
+              <FormControlLabel value="farmer" control={<Radio />} label="Farmer" />
             </RadioGroup>
           </FormControl>
 
-          {/* Form */}
+          {/* Login Form */}
           <form onSubmit={handleSubmit}>
-            <TextField label="Name" name="name" fullWidth margin="normal" variant="outlined" value={formData.name} onChange={handleChange} required />
             <TextField label="Phone No" name="phone" type="tel" fullWidth margin="normal" variant="outlined" value={formData.phone} onChange={handleChange} required />
             <TextField label="Password" name="password" type="password" fullWidth margin="normal" variant="outlined" value={formData.password} onChange={handleChange} required />
-            <br />
 
-            {/* Submit Button */}
-            <Button type="submit" variant="contained" fullWidth className="submit-btn">Create Account</Button>
+            <Button type="submit" variant="contained" fullWidth className="login-btn">Login</Button>
           </form>
-<br />
-          {/* Login Link */}
-          <Typography variant="body2" className="login-text">Already have an account? <a href="/farmerlogin">Login</a></Typography>
+
+          {/* Signup Link */}
+          <Typography variant="body2" className="signup-text">
+            <br />
+            Don&apos;t have an account? <a href="/farmer">Sign up</a>
+          </Typography>
         </Container>
       </div>
     </div>
   );
 };
 
-export default Farmer;
+export default FarmerLogin;

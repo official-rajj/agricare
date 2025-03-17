@@ -67,10 +67,8 @@ const Buyer = () => {
           <br />
 
           {/* Use useNavigate for navigation */}
-          <Typography variant="body2" className="login-text">
-            Already have an account? 
-            <Button onClick={() => navigate("/buyerlogin")} className="login-btn">Login</Button>
-          </Typography>
+                    <Typography variant="body2" className="login-text">Already have an account? <a href="/buyerlogin">Login</a></Typography>
+
         </Container>
       </div>
     </div>

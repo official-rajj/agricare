@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Container, Typography, FormControl, RadioGroup, FormControlLabel, Radio, TextField, Button } from "@mui/material";
 import farmerImage from "../assets/buyerloginimg.jpg"; // Ensure the correct path
 import logoImage from "../assets/logo.png"; // Ensure the correct path
@@ -7,6 +8,17 @@ import "./Buyerlogin.css"; // Add a CSS file for styling
 const BuyerLogin = () => {
   const [role, setRole] = useState("buyer");
   const [formData, setFormData] = useState({ email: "", password: "" });
+
+  const navigate = useNavigate(); // Initialize navigation
+
+  const handleRoleChange = (e) => {
+    const selectedRole = e.target.value;
+    setRole(selectedRole);
+
+    if (selectedRole === "farmer") {
+      navigate("/farmerlogin"); // Navigate to Farmer login page
+    }
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,7 +49,7 @@ const BuyerLogin = () => {
           {/* Role Selection */}
           <FormControl component="fieldset" className="role-selection">
             <Typography variant="subtitle1">Choose Your Role</Typography>
-            <RadioGroup row value={role} onChange={(e) => setRole(e.target.value)}>
+            <RadioGroup row value={role} onChange={handleRoleChange}>
               <FormControlLabel value="buyer" control={<Radio />} label="Buyer" />
               <FormControlLabel value="farmer" control={<Radio />} label="Farmer" />
             </RadioGroup>
@@ -53,7 +65,8 @@ const BuyerLogin = () => {
 
           {/* Signup Link */}
           <Typography variant="body2" className="signup-text">
-            Don&apos;t have an account? <a href="/signup">Sign up</a>
+            <br />
+            Don&apos;t have an account? <a href="/buyer">Sign up</a>
           </Typography>
         </Container>
       </div>
