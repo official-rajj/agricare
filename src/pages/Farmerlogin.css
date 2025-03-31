@@ -60,7 +60,7 @@
   /* Submit Button */
   .login-btn {
     background-color: #dfd49f !important; /* Soft yellow */
-    color: black !important;
+    color: #000 !important; /* Ensure text is black */
     padding: 12px;
     border-radius: 15px !important;
     margin-top: 15px !important;
@@ -70,11 +70,21 @@
     border: none;
     text-align: center;
     transition: background-color 0.3s ease;
-  }
-  
-  .login-btn:hover {
-    background-color: #efe29c;
-  }
+    text-decoration: none;
+}
+
+/* Hover Effect */
+.login-btn:hover {
+    background-color: #cfc487 !important; /* Darker yellow */
+    color: #333 !important;
+}
+
+/* Ensure Button Text Color */
+.login-btn a {
+    color: inherit; /* Ensures link inside button has the same color */
+    text-decoration: none;
+}
+
   
   /* Login Link */
   .signup-text {
@@ -91,4 +101,3 @@
   .signup-text a:hover {
     text-decoration: underline;
   }
-  

@@ -1,113 +1,138 @@
-/* Dashboard Layout */
+/* General Page Styling */
 .dashboard-container {
-    display: flex;
-    height: 100vh;
-    background-color: #f5f5dc;
-  }
-  
-  /* Sidebar */
-  .sidebar {
-    width: 220px;
-    background: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .logo {
-    width: 120px;
-    margin-bottom: 20px;
-  }
-  
-  .sidebar-menu {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-  }
-  
-  .menu-item {
-    display: flex;
-    align-items: center;
-    padding: 15px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    color: #333;
-    transition: background 0.3s ease;
-  }
-  
-  .menu-item:hover,
-  .menu-item.active {
-    background: #f8d16e;
-    font-weight: bold;
-  }
-  
-  .menu-icon {
-    margin-right: 10px;
-    color: #333;
-  }
-  
-  /* Main Content */
-  .main-content {
-    flex-grow: 1;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Header */
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-  
-  .title {
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .highlight {
-    color: orange;
-  }
-  
-  /* User Info */
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-avatar {
-    margin-right: 10px;
-  }
-  
-  .user-name {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  /* Cards Section */
-  .cards-container {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .dashboard-card {
-    width: 30%;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-  }
-  
-  .dashboard-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .card-title {
-    text-align: center;
-    font-weight: bold;
-  }
-  
+  display: flex;
+  height: 100vh;
+  background-color: #f9f5e8; /* Light beige background */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 230px;
+  background: #fff;
+  padding: 25px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+/* Sidebar Logo */
+.logo {
+  width: 140px;
+  margin-bottom: 30px;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  transition: 0.3s;
+}
+
+.menu-item.active {
+  color: #e6b800; /* Highlighted menu */
+  font-weight: bold;
+}
+
+.menu-icon {
+  margin-right: 20px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 30px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #555;
+}
+
+.highlight {
+  color: #e6b800; /* Yellow */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Cards Container */
+.cards-container {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+  width: 300px;
+  height: 440px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.10);
+}
+
+/* Images Section (Top & Bottom) */
+.card-images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.card-image {
+  width: 90%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Card Title */
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+}

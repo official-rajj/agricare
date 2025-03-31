@@ -1,0 +1,165 @@
+/* Overall container */
+.farhistory-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #f9f5e8; /* Light beige background */
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 230px;
+  background-color: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #e0e0e0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 30px;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  gap: 12px;
+  transition: background 0.3s ease-in-out, color 0.3s;
+  border-radius: 8px;
+}
+
+.menu-item:hover {
+  background-color: #f5f5d5;
+}
+
+.menu-item.active {
+  background-color: #f5f5d5;
+  font-weight: bold;
+  color: #f5c518;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  overflow: auto;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 30px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.highlight {
+  color: #f5c518;
+}
+
+/* User Info */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 42px;
+  height: 42px;
+}
+
+.user-name {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Product Card */
+.product-container {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.product-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #d3d3a4;
+  padding: 20px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  gap: 15px;
+}
+
+/* Responsive Layout: Stack items in smaller screens */
+@media (max-width: 600px) {
+  .product-card {
+      flex-direction: column;
+      text-align: center;
+  }
+
+  .product-image {
+      margin-top: 10px;
+  }
+}
+
+.product-name {
+  font-size: 20px;
+  font-weight: bold;
+  color: #222;
+}
+
+.product-status {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.status-active {
+  font-weight: bold;
+  color: #008000; /* Green for Active Status */
+}
+
+/* Product Image */
+.product-image {
+  width: 110px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}

@@ -4,9 +4,13 @@ import { Dashboard, Settings, History } from "@mui/icons-material";
 import "./FarmerDashboard.css";
 import logo from "../assets/logo.png"; // Ensure correct path
 import userIcon from "../assets/user.png"; // Ensure correct path
-import toSellImg from "../assets/to-sell.png"; // Image for "To Sell"
-import expertAdviceImg from "../assets/expert-advice.png"; // Image for "Expert Advice"
-import weatherForecastImg from "../assets/weather-forecast1.png"; // Image for "Weather Forecast"
+import toSellImg1 from "../assets/to-sell1.jpg"; // First image for "To Sell"
+import toSellImg2 from "../assets/to-sell2.png"; // Second image for "To Sell"
+import expertAdviceImg1 from "../assets/expert-advice1.jpg"; // First image for "Expert Advice"
+import expertAdviceImg2 from "../assets/expert-advice2.png"; // Second image for "Expert Advice"
+import weatherForecastImg1 from "../assets/weather-forecast1.png"; // First image for "Weather Forecast"
+import weatherForecastImg2 from "../assets/weather-forecast2.png"; // Second image for "Weather Forecast"
+import { Link } from "react-router-dom"; 
 
 const FarmerDashboard = () => {
   return (
@@ -17,15 +21,15 @@ const FarmerDashboard = () => {
         <ul className="sidebar-menu">
           <li className="menu-item active">
             <Dashboard className="menu-icon" />
-            Dashboard
+            <span>Dashboard</span>
           </li>
           <li className="menu-item">
             <Settings className="menu-icon" />
-            Setting
+            <span>Setting</span>
           </li>
           <li className="menu-item">
             <History className="menu-icon" />
-            History
+            <span>History</span>
           </li>
         </ul>
       </div>
@@ -47,24 +51,35 @@ const FarmerDashboard = () => {
         <Container className="cards-container">
           {/* To Sell */}
           <Card className="dashboard-card">
-            <CardMedia component="img" height="140" image={toSellImg} alt="To Sell" />
-            <CardContent>
-              <Typography variant="h6" className="card-title">To Sell</Typography>
-            </CardContent>
-          </Card>
+  <Link to="/tosell" style={{ textDecoration: "none", color: "inherit" }}>
+    <div className="card-images">
+      <CardMedia component="img" height="100" image={toSellImg1} alt="To Sell" className="card-image" />
+      <CardMedia component="img" height="100" image={toSellImg2} alt="To Sell" className="card-image" />
+    </div>
+    <CardContent className="card-content">
+      <Typography variant="h6" className="card-title">To Sell</Typography>
+    </CardContent>
+  </Link>
+</Card>
 
           {/* Expert Advice */}
           <Card className="dashboard-card">
-            <CardMedia component="img" height="140" image={expertAdviceImg} alt="Expert Advice" />
-            <CardContent>
+            <div className="card-images">
+              <CardMedia component="img" height="100" image={expertAdviceImg1} alt="Expert Advice" className="card-image" />
+              <CardMedia component="img" height="100" image={expertAdviceImg2} alt="Expert Advice" className="card-image" />
+            </div>
+            <CardContent className="card-content">
               <Typography variant="h6" className="card-title">Expert Advice</Typography>
             </CardContent>
           </Card>
 
           {/* Weather Forecast */}
           <Card className="dashboard-card">
-            <CardMedia component="img" height="140" image={weatherForecastImg} alt="Weather Forecast" />
-            <CardContent>
+            <div className="card-images">
+              <CardMedia component="img" height="100" image={weatherForecastImg1} alt="Weather Forecast" className="card-image" />
+              <CardMedia component="img" height="100" image={weatherForecastImg2} alt="Weather Forecast" className="card-image" />
+            </div>
+            <CardContent className="card-content">
               <Typography variant="h6" className="card-title">Weather Forecast</Typography>
             </CardContent>
           </Card>

@@ -59,7 +59,7 @@ const FarmerLogin = () => {
             <TextField label="Phone No" name="phone" type="tel" fullWidth margin="normal" variant="outlined" value={formData.phone} onChange={handleChange} required />
             <TextField label="Password" name="password" type="password" fullWidth margin="normal" variant="outlined" value={formData.password} onChange={handleChange} required />
 
-            <Button type="submit" variant="contained" fullWidth className="login-btn">Login</Button>
+            <Button type="submit" variant="contained" fullWidth className="login-btn"> <a href="/farmerdashboard">Login</a></Button>
           </form>
 
           {/* Signup Link */}

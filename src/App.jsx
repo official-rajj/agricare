@@ -15,7 +15,7 @@ import aboutImage from "./assets/farmer-profile.png"; // Replace with actual Abo
 import worksIcon from "./assets/works-icon.png"; // Replace with actual icon
 import farmerImage from "./assets/farmer.png"; // Replace with actual Why Choose image
 import cropMarketplace from "./assets/crop-marketplace.png"; // Replace with actual service image
-import weatherForecast from "./assets/weather-forecast.png"; // Replace with actual service image
+import weatherForecast from "./assets/weather-forecast1.png"; // Replace with actual service image
 import expertsAdvice from "./assets/experts-advice.png"; // Replace with actual service image
 import Footer from "./pages/Footer"; // Import the Footer component
 import Buyer from "./pages/buyer";
@@ -23,6 +23,8 @@ import Farmer from "./pages/Farmer";
 import BuyerLogin from "./pages/Buyerlogin";
 import FarmerLogin from "./pages/Farmerlogin";
 import FarmerDashboard from "./pages/FarmerDashboard";
+import ToSell from "./pages/tosell";
+import FarHistory from "./pages/Farhistory";
 
 const App = () => {
   return (
@@ -34,6 +36,8 @@ const App = () => {
         <Route path="/buyerlogin" element={<BuyerLogin />} />
         <Route path="/farmerlogin" element={<FarmerLogin />} />
         <Route path="/farmerdashboard" element={<FarmerDashboard />} />
+        <Route path="/tosell" element={<ToSell />} />
+        <Route path="/farhistory" element={<FarHistory />} />
       </Routes>
     </Router>
   );
