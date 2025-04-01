@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Typography, Card, CardMedia, CardContent, Avatar } from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 import "./FarmerDashboard.css";
 import logo from "../assets/logo.png"; // Ensure correct path
 import userIcon from "../assets/user.png"; // Ensure correct path
@@ -13,6 +14,8 @@ import weatherForecastImg2 from "../assets/weather-forecast2.png"; // Second ima
 import { Link } from "react-router-dom"; 
 
 const FarmerDashboard = () => {
+  const navigate = useNavigate(); // ✅ Initialize navigate function
+
   return (
     <div className="dashboard-container">
       {/* Sidebar */}
@@ -27,7 +30,7 @@ const FarmerDashboard = () => {
             <Settings className="menu-icon" />
             <span>Setting</span>
           </li>
-          <li className="menu-item">
+          <li className="menu-item" onClick={() => navigate("/FarHistory")}> {/* ✅ Corrected */}
             <History className="menu-icon" />
             <span>History</span>
           </li>
@@ -51,16 +54,16 @@ const FarmerDashboard = () => {
         <Container className="cards-container">
           {/* To Sell */}
           <Card className="dashboard-card">
-  <Link to="/tosell" style={{ textDecoration: "none", color: "inherit" }}>
-    <div className="card-images">
-      <CardMedia component="img" height="100" image={toSellImg1} alt="To Sell" className="card-image" />
-      <CardMedia component="img" height="100" image={toSellImg2} alt="To Sell" className="card-image" />
-    </div>
-    <CardContent className="card-content">
-      <Typography variant="h6" className="card-title">To Sell</Typography>
-    </CardContent>
-  </Link>
-</Card>
+            <Link to="/tosell" style={{ textDecoration: "none", color: "inherit" }}>
+              <div className="card-images">
+                <CardMedia component="img" height="100" image={toSellImg1} alt="To Sell" className="card-image" />
+                <CardMedia component="img" height="100" image={toSellImg2} alt="To Sell" className="card-image" />
+              </div>
+              <CardContent className="card-content">
+                <Typography variant="h6" className="card-title">To Sell</Typography>
+              </CardContent>
+            </Link>
+          </Card>
 
           {/* Expert Advice */}
           <Card className="dashboard-card">

@@ -127,9 +127,14 @@ const ToSell = () => {
             >
               Go Back
             </Button>
-            <Button variant="contained" color="success" className="done-button" onClick={() => navigate("/farhistory")}>
-              Done
-            </Button>
+            <Button
+  variant="contained"
+  color="success"
+  className="done-button"
+  onClick={() => navigate("/farhistory", { state: { image } })} // Pass image state
+>
+  Done
+</Button>
           </div>
         </Container>
       </div>
