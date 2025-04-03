@@ -1,0 +1,118 @@
+.farSettingContainer {
+    display: flex;
+    height: 100vh;
+    background-color: #faf3d4;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 240px;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logoContainer {
+    margin-bottom: 20px;
+  }
+  
+  .logoImage {
+    width: 120px;
+  }
+  
+  .sidebar-menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .menu-item.active {
+    color: #ff9800;
+  }
+  
+  .menu-icon {
+    margin-right: 10px;
+  }
+  
+  /* Main Content */
+  .mainContent {
+    flex-grow: 1;
+    padding: 40px;
+  }
+  
+  .title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .highlight {
+    color: #ff9800;
+  }
+  
+  /* Profile Section */
+  .profileContainer {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .profileAvatar {
+    width: 80px;
+    height: 80px;
+    margin: 20px auto;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+  }
+  
+  .changePicture {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .deletePicture {
+    background-color: lightgray;
+    color: black;
+  }
+  
+  /* Info Section */
+  .infoContainer {
+    margin-top: 20px;
+  }
+  
+  .sectionTitle {
+    margin: 10px 0;
+  }
+  
+  /* Buttons */
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .saveButton {
+    background-color: green;
+    color: white;
+  }
+  
+  .logoutButton {
+    background-color: red;
+    color: white;
+  }
+  

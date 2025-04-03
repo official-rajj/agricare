@@ -27,6 +27,7 @@ import ToSell from "./pages/tosell";
 import FarHistory from "./pages/Farhistory";
 import ExpertAdvice from "./pages/ExpertAdvice";
 import FarWeather from "./pages/FarWeather";
+import FarSetting from "./pages/FarSetting";
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/farhistory" element={<FarHistory />} />
         <Route path="/expertadvice" element={<ExpertAdvice />} />
         <Route path="/farweather" element={<FarWeather />} />
+        <Route path="/farsetting" element={<FarSetting />} />
       </Routes>
     </Router>
   );

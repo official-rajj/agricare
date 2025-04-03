@@ -1,20 +1,20 @@
 import React from "react";
 import { Container, Typography, Card, CardMedia, CardContent, Avatar } from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { useNavigate } from "react-router-dom";
 import "./FarmerDashboard.css";
-import logo from "../assets/logo.png"; // Ensure correct path
-import userIcon from "../assets/user.png"; // Ensure correct path
-import toSellImg1 from "../assets/to-sell1.jpg"; // First image for "To Sell"
-import toSellImg2 from "../assets/to-sell2.png"; // Second image for "To Sell"
-import expertAdviceImg1 from "../assets/expert-advice1.jpg"; // First image for "Expert Advice"
-import expertAdviceImg2 from "../assets/expert-advice2.png"; // Second image for "Expert Advice"
-import weatherForecastImg1 from "../assets/weather-forecast1.png"; // First image for "Weather Forecast"
-import weatherForecastImg2 from "../assets/weather-forecast2.png"; // Second image for "Weather Forecast"
+import logo from "../assets/logo.png";
+import userIcon from "../assets/user.png";
+import toSellImg1 from "../assets/to-sell1.jpg";
+import toSellImg2 from "../assets/to-sell2.png";
+import expertAdviceImg1 from "../assets/expert-advice1.jpg";
+import expertAdviceImg2 from "../assets/expert-advice2.png";
+import weatherForecastImg1 from "../assets/weather-forecast1.png";
+import weatherForecastImg2 from "../assets/weather-forecast2.png";
 import { Link } from "react-router-dom"; 
 
 const FarmerDashboard = () => {
-  const navigate = useNavigate(); // ✅ Initialize navigate function
+  const navigate = useNavigate();
 
   return (
     <div className="dashboard-container">
@@ -26,11 +26,11 @@ const FarmerDashboard = () => {
             <Dashboard className="menu-icon" />
             <span>Dashboard</span>
           </li>
-          <li className="menu-item">
+          <li className="menu-item" onClick={() => navigate("/FarSetting")}> {/* ✅ Updated */}
             <Settings className="menu-icon" />
             <span>Setting</span>
           </li>
-          <li className="menu-item" onClick={() => navigate("/FarHistory")}> {/* ✅ Corrected */}
+          <li className="menu-item" onClick={() => navigate("/FarHistory")}>
             <History className="menu-icon" />
             <span>History</span>
           </li>
@@ -67,27 +67,27 @@ const FarmerDashboard = () => {
 
           {/* Expert Advice */}
           <Card className="dashboard-card">
-          <Link to="/expertadvice" style={{ textDecoration: "none", color: "inherit" }}>
-            <div className="card-images">
-              <CardMedia component="img" height="100" image={expertAdviceImg1} alt="Expert Advice" className="card-image" />
-              <CardMedia component="img" height="100" image={expertAdviceImg2} alt="Expert Advice" className="card-image" />
-            </div>
-            <CardContent className="card-content">
-              <Typography variant="h6" className="card-title">Expert Advice</Typography>
-            </CardContent>
+            <Link to="/expertadvice" style={{ textDecoration: "none", color: "inherit" }}>
+              <div className="card-images">
+                <CardMedia component="img" height="100" image={expertAdviceImg1} alt="Expert Advice" className="card-image" />
+                <CardMedia component="img" height="100" image={expertAdviceImg2} alt="Expert Advice" className="card-image" />
+              </div>
+              <CardContent className="card-content">
+                <Typography variant="h6" className="card-title">Expert Advice</Typography>
+              </CardContent>
             </Link>
           </Card>
 
           {/* Weather Forecast */}
           <Card className="dashboard-card">
-          <Link to="/farweather" style={{ textDecoration: "none", color: "inherit" }}>
-            <div className="card-images">
-              <CardMedia component="img" height="100" image={weatherForecastImg1} alt="Weather Forecast" className="card-image" />
-              <CardMedia component="img" height="100" image={weatherForecastImg2} alt="Weather Forecast" className="card-image" />
-            </div>
-            <CardContent className="card-content">
-              <Typography variant="h6" className="card-title">Weather Forecast</Typography>
-            </CardContent>
+            <Link to="/farweather" style={{ textDecoration: "none", color: "inherit" }}>
+              <div className="card-images">
+                <CardMedia component="img" height="100" image={weatherForecastImg1} alt="Weather Forecast" className="card-image" />
+                <CardMedia component="img" height="100" image={weatherForecastImg2} alt="Weather Forecast" className="card-image" />
+              </div>
+              <CardContent className="card-content">
+                <Typography variant="h6" className="card-title">Weather Forecast</Typography>
+              </CardContent>
             </Link>
           </Card>
         </Container>

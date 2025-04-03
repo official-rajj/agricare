@@ -1,16 +1,18 @@
 import React from "react";
 import { Container, Typography, Card, CardContent, CardMedia, Avatar, Box } from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
-import { useLocation, useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./FarHistory.module.css";
 import logo from "../assets/logo.png";
 import userIcon from "../assets/user.png";
-import onionImage from "../assets/onions.png"; // Default fallback image
 
 const FarHistory = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // ✅ Initialize navigate function
-  const selectedImage = location.state?.image; // Get the selected image if available
+  const navigate = useNavigate();
+
+  // ✅ Get the selected image and description from navigation state
+  const selectedImage = location.state?.image;
+  const description = location.state?.description;
 
   return (
     <div className={styles.farhistoryContainer}>
@@ -22,7 +24,7 @@ const FarHistory = () => {
             <Dashboard />
             <span>Dashboard</span>
           </li>
-          <li className={styles.menuItem}>
+          <li className={styles.menuItem} onClick={() => navigate("/farsetting")}>
             <Settings />
             <span>Setting</span>
           </li>
@@ -66,6 +68,15 @@ const FarHistory = () => {
                   image={selectedImage}
                   className={styles.productImage}
                 />
+              )}
+
+              {/* ✅ Display Description If Available */}
+              {description && (
+                <CardContent className={styles.descriptionContainer}>
+                  <Typography variant="body1" className={styles.descriptionText}>
+                    <strong>Description:</strong> {description}
+                  </Typography>
+                </CardContent>
               )}
             </Card>
           </Container>
