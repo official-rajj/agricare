@@ -1,0 +1,197 @@
+.expertAdviceContainer {
+  display: flex;
+  height: 100vh;
+  background-color: #f8f3db;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid #ddd;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logoImage {
+  width: 100px;
+  height: 80px;
+  margin-bottom: 5px;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  gap: 10px;
+}
+
+/* Sidebar Icons */
+.menu-icon {
+  color: #555;
+}
+
+/* Main Content */
+.mainContent {
+  flex: 1;
+  padding: 40px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.highlight {
+  color: #e0a500;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background: lightgray;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Expert Advice Section */
+.expertContainer {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Expert Title */
+.expertTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Scrollable Expert List */
+.expertList {
+  max-height: 350px; /* Limit height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  padding-right: 15px; /* Avoid cutting content */
+}
+
+/* Custom scrollbar */
+.expertList::-webkit-scrollbar {
+  width: 10px;
+}
+
+.expertList::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
+}
+
+.expertList::-webkit-scrollbar-track {
+  background: #f0f0f0;
+}
+
+/* Expert Card */
+.expertCard {
+  display: flex;
+  align-items: center;
+  background: #f9f5e6;
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.expertImage {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.expertInfo {
+  flex: 1;
+  padding-left: 25px;
+}
+
+.expertName {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.expertLocation,
+.expertExperience {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Chat Button */
+.chatButton {
+  background: #2ea44f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.chatButton:hover {
+  background: #247e3c;
+}
+
+/* Back Button */
+.backButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #ccc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.backButton:hover {
+  background: #aaa;
+}

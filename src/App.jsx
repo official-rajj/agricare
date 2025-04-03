@@ -25,6 +25,8 @@ import FarmerLogin from "./pages/Farmerlogin";
 import FarmerDashboard from "./pages/FarmerDashboard";
 import ToSell from "./pages/tosell";
 import FarHistory from "./pages/Farhistory";
+import ExpertAdvice from "./pages/ExpertAdvice";
+import FarWeather from "./pages/FarWeather";
 
 const App = () => {
   return (
@@ -38,6 +40,8 @@ const App = () => {
         <Route path="/farmerdashboard" element={<FarmerDashboard />} />
         <Route path="/tosell" element={<ToSell />} />
         <Route path="/farhistory" element={<FarHistory />} />
+        <Route path="/expertadvice" element={<ExpertAdvice />} />
+        <Route path="/farweather" element={<FarWeather />} />
       </Routes>
     </Router>
   );

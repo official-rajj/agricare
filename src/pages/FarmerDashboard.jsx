@@ -67,6 +67,7 @@ const FarmerDashboard = () => {
 
           {/* Expert Advice */}
           <Card className="dashboard-card">
+          <Link to="/expertadvice" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="card-images">
               <CardMedia component="img" height="100" image={expertAdviceImg1} alt="Expert Advice" className="card-image" />
               <CardMedia component="img" height="100" image={expertAdviceImg2} alt="Expert Advice" className="card-image" />
@@ -74,10 +75,12 @@ const FarmerDashboard = () => {
             <CardContent className="card-content">
               <Typography variant="h6" className="card-title">Expert Advice</Typography>
             </CardContent>
+            </Link>
           </Card>
 
           {/* Weather Forecast */}
           <Card className="dashboard-card">
+          <Link to="/farweather" style={{ textDecoration: "none", color: "inherit" }}>
             <div className="card-images">
               <CardMedia component="img" height="100" image={weatherForecastImg1} alt="Weather Forecast" className="card-image" />
               <CardMedia component="img" height="100" image={weatherForecastImg2} alt="Weather Forecast" className="card-image" />
@@ -85,6 +88,7 @@ const FarmerDashboard = () => {
             <CardContent className="card-content">
               <Typography variant="h6" className="card-title">Weather Forecast</Typography>
             </CardContent>
+            </Link>
           </Card>
         </Container>
       </div>
