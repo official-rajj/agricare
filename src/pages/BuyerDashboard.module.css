@@ -1,0 +1,147 @@
+.dashboardContainer {
+  display: flex;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: white;
+  padding: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.logo {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.sidebarMenu {
+  list-style: none;
+  padding: 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 10px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #555;
+}
+
+.menuItem:hover,
+.active {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  color: #fbbf24;
+}
+
+.menuIcon {
+  margin-right: 10px;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 30px;
+  background-color: #faf8ec;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.highlight {
+  color: #e5b700;
+  font-weight: bold;
+  font-family: 'Comic Sans MS', cursive;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+}
+
+.userAvatar {
+  margin-right: 10px;
+}
+
+.userName {
+  font-weight: 500;
+}
+
+.tabsSection {
+  margin-bottom: 20px;
+}
+
+.cardsScrollContainer {
+  max-height: 430px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.cardsScrollContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cardsScrollContainer::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dashboardCard {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.cardImages {
+  margin-right: 20px;
+}
+
+.cardImage {
+  width: 100px;
+  object-fit: contain;
+}
+
+.cardContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardTitle {
+  font-weight: 600;
+}
+
+.cardPrice {
+  color: #666;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.buyButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 6px 16px;
+  text-transform: none;
+  border-radius: 20px;
+}

@@ -28,6 +28,7 @@ import FarHistory from "./pages/Farhistory";
 import ExpertAdvice from "./pages/ExpertAdvice";
 import FarWeather from "./pages/FarWeather";
 import FarSetting from "./pages/FarSetting";
+import BuyerDashboard from "./pages/BuyerDashboard";
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/expertadvice" element={<ExpertAdvice />} />
         <Route path="/farweather" element={<FarWeather />} />
         <Route path="/farsetting" element={<FarSetting />} />
+        <Route path="/buyerdashboard" element={<BuyerDashboard />} />
       </Routes>
     </Router>
   );
