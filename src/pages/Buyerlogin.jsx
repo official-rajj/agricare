@@ -90,9 +90,7 @@ const BuyerLogin = () => {
               margin="normal"
               variant="outlined"
               value={formData.email}
-              onChange={handleChange}
-              required
-            />
+              onChange={handleChange}            />
             <TextField
               label="Password"
               name="password"
@@ -102,7 +100,6 @@ const BuyerLogin = () => {
               variant="outlined"
               value={formData.password}
               onChange={handleChange}
-              required
             />
 
             <Button type="submit" variant="contained" fullWidth className="login-btn">

@@ -8,7 +8,7 @@ import {
   Avatar,
   Button,
   Tabs,
-  Tab
+  Tab,
 } from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +20,12 @@ import AppleImage from "../assets/apple.png";
 import BananaImage from "../assets/banana.png";
 import OrangeImage from "../assets/orange.png";
 import PomeImage from "../assets/Pome.jpg";
+import TomatoImage from "../assets/tomato.png";
+import PotatoImage from "../assets/potatoes.png";
+import CarrotImage from "../assets/carrot.png";
+import WheatImage from "../assets/wheat.png";
+import RiceImage from "../assets/rice.png";
+import PulsesImage from "../assets/pulses.png";
 
 const BuyerDashboard = () => {
   const navigate = useNavigate();
@@ -29,12 +35,39 @@ const BuyerDashboard = () => {
     setCategory(newValue);
   };
 
-  const products = [
-    { name: "Apple", price: "Rs 40/kg", image: AppleImage },
-    { name: "Banana", price: "Rs 50/kg", image: BananaImage },
-    { name: "Orange", price: "Rs 55/kg", image: OrangeImage },
-    { name: "Pome Granate", price: "Rs 80/kg", image: PomeImage }
-  ];
+  const allProducts = {
+    fruits: [
+      { name: "Apple", price: "Rs 40/kg", image: AppleImage },
+      { name: "Banana", price: "Rs 50/kg", image: BananaImage },
+      { name: "Orange", price: "Rs 55/kg", image: OrangeImage },
+      { name: "Pome Granate", price: "Rs 80/kg", image: PomeImage },
+    ],
+    vegetables: [
+      { name: "Tomato", price: "Rs 30/kg", image: TomatoImage },
+      { name: "Potato", price: "Rs 20/kg", image: PotatoImage },
+      { name: "Carrot", price: "Rs 25/kg", image: CarrotImage },
+    ],
+    cereal: [
+      { name: "Wheat", price: "Rs 22/kg", image: WheatImage },
+      { name: "Rice", price: "Rs 40/kg", image: RiceImage },
+      { name: "Pulses", price: "Rs 50/kg", image: PulsesImage },
+    ],
+  };
+
+  const getCurrentProducts = () => {
+    switch (category) {
+      case 0:
+        return allProducts.fruits;
+      case 1:
+        return allProducts.vegetables;
+      case 2:
+        return allProducts.cereal;
+      default:
+        return [];
+    }
+  };
+
+  const currentProducts = getCurrentProducts();
 
   return (
     <div className={styles.dashboardContainer}>
@@ -66,7 +99,9 @@ const BuyerDashboard = () => {
           </Typography>
           <div className={styles.userInfo}>
             <Avatar src={userIcon} className={styles.userAvatar} />
-            <Typography variant="body1" className={styles.userName}>Abhi Sharma</Typography>
+            <Typography variant="body1" className={styles.userName}>
+              Abhi Sharma
+            </Typography>
           </div>
         </div>
 
@@ -82,7 +117,7 @@ const BuyerDashboard = () => {
         {/* Scrollable Products Section */}
         <div className={styles.cardsScrollContainer}>
           <Container className={styles.cardsContainer}>
-            {products.map((product, index) => (
+            {currentProducts.map((product, index) => (
               <Card className={styles.dashboardCard} key={index}>
                 <div className={styles.cardImages}>
                   <CardMedia
@@ -94,9 +129,15 @@ const BuyerDashboard = () => {
                   />
                 </div>
                 <CardContent className={styles.cardContent}>
-                  <Typography variant="h6" className={styles.cardTitle}>{product.name}</Typography>
-                  <Typography variant="body2" className={styles.cardPrice}>{product.price}</Typography>
-                  <Button variant="contained" color="success" className={styles.buyButton}>Buy</Button>
+                  <Typography variant="h6" className={styles.cardTitle}>
+                    {product.name}
+                  </Typography>
+                  <Typography variant="body2" className={styles.cardPrice}>
+                    {product.price}
+                  </Typography>
+                  <Button variant="contained" color="success" className={styles.buyButton}>
+                    Buy
+                  </Button>
                 </CardContent>
               </Card>
             ))}
