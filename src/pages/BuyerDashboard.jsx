@@ -135,9 +135,19 @@ const BuyerDashboard = () => {
                   <Typography variant="body2" className={styles.cardPrice}>
                     {product.price}
                   </Typography>
-                  <Button variant="contained" color="success" className={styles.buyButton}>
-                    Buy
-                  </Button>
+                  <Button
+  variant="contained"
+  color="success"
+  className={styles.buyButton}
+  onClick={() =>
+    navigate("/tobuy", {
+      state: { image: product.image, price: product.price },
+    })
+  }
+>
+  Buy
+</Button>
+
                 </CardContent>
               </Card>
             ))}
