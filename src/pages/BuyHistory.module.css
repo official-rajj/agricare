@@ -1,0 +1,158 @@
+.buyHistoryContainer {
+    display: flex;
+    height: 100vh;
+    background-color: #faf3d4;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 240px;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+  
+  .sidebarMenu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .menuItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    font-size: 18px;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .menuItem.active {
+    color: #ff9800;
+  }
+  
+  .menuItem svg {
+    margin-right: 10px;
+  }
+  
+  /* Main Content */
+  .mainContent {
+    flex-grow: 1;
+    padding: 40px;
+  }
+  
+  .title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+  }
+  
+  .highlight {
+    color: #ff9800;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .userAvatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .userName {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  /* Product Card */
+  .greyContainer {
+    margin-top: 30px;
+  }
+  
+  .productContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .productCard {
+    width: 450px;
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .productInfo {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .productName {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  .productStatus {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .statusActive {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .productImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .descriptionContainer {
+    padding: 20px;
+  }
+  
+  .descriptionText {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .header {
+    position: relative;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    height: 60px;
+  }
+  .natural {
+    color: #e7a900;
+  }
+  .profile {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+  }
+  .avatar {
+    background-color: #d2d0de;
+    padding: 10px;
+    border-radius: 50%;
+  }

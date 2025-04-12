@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom'; // ✅ Added useNavigate
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './ToBuy.module.css';
 import logo from '../assets/logo.png';
 import { Dashboard, Settings, History } from '@mui/icons-material';
 
 const ToBuy = () => {
   const location = useLocation();
-  const navigate = useNavigate(); // ✅ Initialize navigation
-  const { image, price } = location.state || {};
+  const navigate = useNavigate();
+
+  // ✅ Destructure product data from location.state
+  const { image, price, name } = location.state || {};
+
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
@@ -16,6 +19,18 @@ const ToBuy = () => {
 
   const handleDecrement = () => {
     if (quantity > 1) setQuantity(prev => prev - 1);
+  };
+
+  const handleDone = () => {
+    // ✅ Navigate to BuyHistory with data
+    navigate("/BuyHistory", {
+      state: {
+        image,
+        name,
+        price,
+        quantity,
+      },
+    });
   };
 
   return (
@@ -61,7 +76,7 @@ const ToBuy = () => {
           </p>
 
           {image && (
-            <img src={image} alt="product" className={styles.image} />
+            <img src={image} alt={name} className={styles.image} />
           )}
 
           <div className={styles.controls}>
@@ -75,10 +90,15 @@ const ToBuy = () => {
           </div>
 
           <div className={styles.buttons}>
-            <button className={styles.backBtn} onClick={() => navigate("/buyerdashboard")}>
+            <button
+              className={styles.backBtn}
+              onClick={() => navigate("/buyerdashboard")}
+            >
               Go Back
             </button>
-            <button className={styles.doneBtn}  onClick={() => navigate("/BuyHistory")}>Done</button>
+            <button className={styles.doneBtn} onClick={handleDone}>
+              Done
+            </button>
           </div>
         </section>
       </main>

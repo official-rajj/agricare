@@ -31,6 +31,7 @@ import FarSetting from "./pages/FarSetting";
 import BuyerDashboard from "./pages/BuyerDashboard";
 import BuySetting from "./pages/BuySetting";
 import ToBuy from "./pages/ToBuy";
+import BuyHistory from "./pages/BuyHistory";
 
 const App = () => {
   return (
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/buyerdashboard" element={<BuyerDashboard />} />
         <Route path="/buysetting" element={<BuySetting />} />
         <Route path="/tobuy" element={<ToBuy />} />
+        <Route path="/BuyHistory" element={<BuyHistory />} />
       </Routes>
     </Router>
   );
