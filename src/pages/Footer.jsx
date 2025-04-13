@@ -1,7 +1,10 @@
 import "./Footer.css";
 import logo from "../assets/logo.png"; // Add your actual logo path
+import { useNavigate } from "react-router-dom";
+
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -32,7 +35,7 @@ const Footer = () => {
           {/* Subscription Box */}
           <div className="subscribe-box">
             <input type="email" placeholder="Your Email Address" />
-            <button className="subscribe-btn">📩</button>
+            <button className="subscribe-btn" onClick={() => navigate("/Buyer")}>📩</button>
           </div>
         </div>
 
