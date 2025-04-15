@@ -1,51 +1,63 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Typography, FormControl, RadioGroup, FormControlLabel, Radio, TextField, Button } from "@mui/material";
-import farmerImage from "../assets/farmerloginimg.jpg"; // Ensure the correct path
-import logoImage from "../assets/logo.png"; // Ensure the correct path
-import "./Farmerlogin.css"; // Add a CSS file for styling
+import {
+  Container,
+  Typography,
+  FormControl,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  TextField,
+  Button,
+} from "@mui/material";
+import api from "../api/api"; // ✅ Axios instance
+import farmerImage from "../assets/farmerloginimg.jpg";
+import logoImage from "../assets/logo.png";
+import "./Farmerlogin.css";
 
 const FarmerLogin = () => {
   const [role, setRole] = useState("farmer");
   const [formData, setFormData] = useState({ phone: "", password: "" });
+  const [error, setError] = useState(""); // ✅ Error state
 
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
+
   const handleRoleChange = (e) => {
     const selectedRole = e.target.value;
     setRole(selectedRole);
-
-    if (selectedRole === "buyer") {
-      navigate("/buyerlogin"); // Navigate to Farmer login page
-    }
+    if (selectedRole === "buyer") navigate("/buyerlogin");
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Submitted", { ...formData, role });
+    setError(""); // Clear previous errors
+
+    try {
+      const response = await api.post("/farmer/login", formData);
+      console.log("Farmer logged in:", response.data);
+      navigate("/farmerdashboard");
+    } catch (err) {
+      const message = err.response?.data?.error || "Invalid credentials. Please try again.";
+      console.error("Login failed:", message);
+      setError(message); // ✅ Show error in UI
+    }
   };
 
   return (
     <div className="farmer-login-container">
-      {/* Left Image Section */}
       <div className="image-section">
         <img src={farmerImage} alt="Farmer harvesting grapes" className="farmer-img" />
       </div>
 
-      {/* Right Login Form Section */}
       <div className="form-section">
         <Container maxWidth="sm" className="form-container">
-          
-          {/* Logo */}
           <img src={logoImage} alt="Logo" className="logo" />
-          
-          {/* Title */}
           <Typography variant="h5" className="title">Login Account</Typography>
 
-          {/* Role Selection */}
           <FormControl component="fieldset" className="role-selection">
             <Typography variant="subtitle1">Choose Your Role</Typography>
             <RadioGroup row value={role} onChange={handleRoleChange}>
@@ -54,15 +66,40 @@ const FarmerLogin = () => {
             </RadioGroup>
           </FormControl>
 
-          {/* Login Form */}
           <form onSubmit={handleSubmit}>
-            <TextField label="Phone No" name="phone" type="tel" fullWidth margin="normal" variant="outlined" value={formData.phone} onChange={handleChange} required />
-            <TextField label="Password" name="password" type="password" fullWidth margin="normal" variant="outlined" value={formData.password} onChange={handleChange} required />
+            <TextField
+              label="Phone No"
+              name="phone"
+              type="tel"
+              fullWidth
+              required
+              margin="normal"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Password"
+              name="password"
+              type="password"
+              fullWidth
+              required
+              margin="normal"
+              value={formData.password}
+              onChange={handleChange}
+            />
 
-            <Button type="submit" variant="contained" fullWidth className="login-btn"> <a href="/farmerdashboard">Login</a></Button>
+            {/* ✅ Error Message Display */}
+            {error && (
+              <Typography variant="body2" color="error" style={{ marginTop: "10px" }}>
+                {error}
+              </Typography>
+            )}
+
+            <Button type="submit" variant="contained" fullWidth className="login-btn">
+              Login
+            </Button>
           </form>
 
-          {/* Signup Link */}
           <Typography variant="body2" className="signup-text">
             <br />
             Don&apos;t have an account? <a href="/farmer">Sign up</a>

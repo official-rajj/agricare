@@ -1,69 +1,117 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { Container, Typography, FormControl, RadioGroup, FormControlLabel, Radio, TextField, Button } from "@mui/material";
-import farmerImage from "../assets/farmercreatepage.jpg"; // Ensure correct path
-import logo from "../assets/logo.png"; // Ensure correct path
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  Typography,
+  FormControl,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  TextField,
+  Button,
+  Alert
+} from "@mui/material";
+import api from "../api/api"; // ✅ Axios instance
+import farmerImage from "../assets/farmercreatepage.jpg";
+import logo from "../assets/logo.png";
 import "./Farmer.css";
 
 const Farmer = () => {
-  const [role, setRole] = useState("farmer"); // Default role: Farmer
+  const [role, setRole] = useState("farmer");
   const [formData, setFormData] = useState({ name: "", phone: "", password: "" });
+  const [success, setSuccess] = useState(""); // ✅ Success message
 
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
 
   const handleRoleChange = (e) => {
     const selectedRole = e.target.value;
     setRole(selectedRole);
-
-    if (selectedRole === "buyer") {
-      navigate("/buyer"); // Navigate to Buyer.jsx when Buyer is selected
-    }
+    if (selectedRole === "buyer") navigate("/buyer");
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted", { ...formData, role });
+    try {
+      await api.post("/farmer/register", formData);
+      setSuccess("Registered Successfully ✅");
+
+      // Redirect after 2 seconds
+      setTimeout(() => {
+        navigate("/farmerlogin");
+      }, 2000);
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+    }
   };
 
   return (
     <div className="farmer-container">
-      {/* Left side image */}
       <div className="image-section">
         <img src={farmerImage} alt="Farmer on tractor" className="farmer-img" />
       </div>
 
-      {/* Right side form */}
       <div className="form-section">
         <Container maxWidth="sm" className="form-container">
           <img src={logo} alt="AgriCare Logo" className="logo" />
           <Typography variant="h5" className="title">Create an account</Typography>
 
-          {/* Role Selection */}
           <FormControl component="fieldset" className="role-selection">
             <Typography variant="subtitle1">Choose Your Role</Typography>
             <RadioGroup row value={role} onChange={handleRoleChange}>
               <FormControlLabel value="buyer" control={<Radio />} label="Buyer" />
-              <FormControlLabel value="farmer" control={<Radio color="primary" />} label="Farmer" />
+              <FormControlLabel value="farmer" control={<Radio />} label="Farmer" />
             </RadioGroup>
           </FormControl>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit}>
-            <TextField label="Name" name="name" fullWidth margin="normal" variant="outlined" value={formData.name} onChange={handleChange} required />
-            <TextField label="Phone No" name="phone" type="tel" fullWidth margin="normal" variant="outlined" value={formData.phone} onChange={handleChange} required />
-            <TextField label="Password" name="password" type="password" fullWidth margin="normal" variant="outlined" value={formData.password} onChange={handleChange} required />
-            <br />
+          {/* ✅ Success message */}
+          {success && (
+            <Alert severity="success" style={{ marginBottom: "20px" }}>
+              {success}
+            </Alert>
+          )}
 
-            {/* Submit Button */}
-            <Button type="submit" variant="contained" fullWidth className="submit-btn">Create Account</Button>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              label="Name"
+              name="name"
+              fullWidth
+              required
+              margin="normal"
+              value={formData.name}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Phone No"
+              name="phone"
+              type="tel"
+              fullWidth
+              required
+              margin="normal"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+            <TextField
+              label="Password"
+              name="password"
+              type="password"
+              fullWidth
+              required
+              margin="normal"
+              value={formData.password}
+              onChange={handleChange}
+            />
+            <Button type="submit" variant="contained" fullWidth className="submit-btn">
+              Create Account
+            </Button>
           </form>
-<br />
-          {/* Login Link */}
-          <Typography variant="body2" className="login-text">Already have an account? <a href="/farmerlogin">Login</a></Typography>
+
+          <Typography variant="body2" className="login-text">
+            Already have an account? <a href="/farmerlogin">Login</a>
+          </Typography>
         </Container>
       </div>
     </div>

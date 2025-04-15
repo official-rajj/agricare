@@ -10,22 +10,23 @@ import {
   TextField,
   Button,
 } from "@mui/material";
-import farmerImage from "../assets/buyerloginimg.jpg"; // Ensure the correct path
-import logoImage from "../assets/logo.png"; // Ensure the correct path
-import "./Buyerlogin.css"; // Add a CSS file for styling
+import api from "../api/api"; // ✅ Axios instance
+import farmerImage from "../assets/buyerloginimg.jpg";
+import logoImage from "../assets/logo.png";
+import "./Buyerlogin.css";
 
 const BuyerLogin = () => {
   const [role, setRole] = useState("buyer");
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState(null); // For error message
 
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
 
   const handleRoleChange = (e) => {
     const selectedRole = e.target.value;
     setRole(selectedRole);
-
     if (selectedRole === "farmer") {
-      navigate("/farmerlogin"); // Navigate to Farmer login page
+      navigate("/farmerlogin");
     }
   };
 
@@ -33,54 +34,43 @@ const BuyerLogin = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login Submitted", { ...formData, role });
+    try {
+      const response = await api.post("/buyer/login", formData);
 
-    // ✅ Redirect to BuyerDashboard after login
-    navigate("/buyerdashboard");
+      // ✅ Save token or user info if needed
+      localStorage.setItem("buyerToken", response.data.token);
+
+      // ✅ Navigate to dashboard
+      navigate("/buyerdashboard");
+    } catch (err) {
+      console.error("Login error:", err.response?.data || err.message);
+      setError(err.response?.data?.error || "Login failed. Try again.");
+    }
   };
 
   return (
     <div className="buyer-login-container">
       {/* Left Image Section */}
       <div className="image-section">
-        <img
-          src={farmerImage}
-          alt="Farmer holding strawberries"
-          className="farmer-img"
-        />
+        <img src={farmerImage} alt="Farmer holding strawberries" className="farmer-img" />
       </div>
 
       {/* Right Login Form Section */}
       <div className="form-section">
         <Container maxWidth="sm" className="form-container">
-          {/* Logo */}
           <img src={logoImage} alt="Logo" className="logo" />
+          <Typography variant="h5" className="title">Login Account</Typography>
 
-          {/* Title */}
-          <Typography variant="h5" className="title">
-            Login Account
-          </Typography>
-
-          {/* Role Selection */}
           <FormControl component="fieldset" className="role-selection">
             <Typography variant="subtitle1">Choose Your Role</Typography>
             <RadioGroup row value={role} onChange={handleRoleChange}>
-              <FormControlLabel
-                value="buyer"
-                control={<Radio />}
-                label="Buyer"
-              />
-              <FormControlLabel
-                value="farmer"
-                control={<Radio />}
-                label="Farmer"
-              />
+              <FormControlLabel value="buyer" control={<Radio />} label="Buyer" />
+              <FormControlLabel value="farmer" control={<Radio />} label="Farmer" />
             </RadioGroup>
           </FormControl>
 
-          {/* Login Form */}
           <form onSubmit={handleSubmit}>
             <TextField
               label="Email ID"
@@ -90,7 +80,9 @@ const BuyerLogin = () => {
               margin="normal"
               variant="outlined"
               value={formData.email}
-              onChange={handleChange}            />
+              onChange={handleChange}
+              required
+            />
             <TextField
               label="Password"
               name="password"
@@ -100,6 +92,7 @@ const BuyerLogin = () => {
               variant="outlined"
               value={formData.password}
               onChange={handleChange}
+              required
             />
 
             <Button type="submit" variant="contained" fullWidth className="login-btn">
@@ -107,7 +100,13 @@ const BuyerLogin = () => {
             </Button>
           </form>
 
-          {/* Signup Link */}
+          {/* Error message */}
+          {error && (
+            <Typography color="error" style={{ marginTop: "10px" }}>
+              {error}
+            </Typography>
+          )}
+
           <Typography variant="body2" className="signup-text">
             <br />
             Don&apos;t have an account? <a href="/buyer">Sign up</a>
