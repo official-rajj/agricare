@@ -18,7 +18,7 @@ import "./Buyerlogin.css";
 const BuyerLogin = () => {
   const [role, setRole] = useState("buyer");
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState(null); // For error message
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -39,8 +39,9 @@ const BuyerLogin = () => {
     try {
       const response = await api.post("/buyer/login", formData);
 
-      // ✅ Save token or user info if needed
+      // ✅ Save token and buyer name
       localStorage.setItem("buyerToken", response.data.token);
+      localStorage.setItem("buyerName", response.data.buyer.name);
 
       // ✅ Navigate to dashboard
       navigate("/buyerdashboard");

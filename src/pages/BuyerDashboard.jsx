@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Container,
   Typography,
@@ -30,6 +30,17 @@ import PulsesImage from "../assets/pulses.png";
 const BuyerDashboard = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState(0);
+  const [buyerName, setBuyerName] = useState("");
+
+  useEffect(() => {
+    // 🧠 Get buyer name from localStorage
+    const storedName = localStorage.getItem("buyerName");
+    if (storedName) {
+      setBuyerName(storedName);
+    } else {
+      setBuyerName("Guest");
+    }
+  }, []);
 
   const handleTabChange = (event, newValue) => {
     setCategory(newValue);
@@ -100,7 +111,7 @@ const BuyerDashboard = () => {
           <div className={styles.userInfo}>
             <Avatar src={userIcon} className={styles.userAvatar} />
             <Typography variant="body1" className={styles.userName}>
-              Abhi Sharma
+              {buyerName}
             </Typography>
           </div>
         </div>
@@ -136,18 +147,17 @@ const BuyerDashboard = () => {
                     {product.price}
                   </Typography>
                   <Button
-  variant="contained"
-  color="success"
-  className={styles.buyButton}
-  onClick={() =>
-    navigate("/tobuy", {
-      state: { image: product.image, price: product.price },
-    })
-  }
->
-  Buy
-</Button>
-
+                    variant="contained"
+                    color="success"
+                    className={styles.buyButton}
+                    onClick={() =>
+                      navigate("/tobuy", {
+                        state: { image: product.image, price: product.price },
+                      })
+                    }
+                  >
+                    Buy
+                  </Button>
                 </CardContent>
               </Card>
             ))}
