@@ -1,8 +1,16 @@
-import React from "react";
-import { Container, Typography, Card, CardMedia, CardContent, Avatar } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Container,
+  Typography,
+  Card,
+  CardMedia,
+  CardContent,
+  Avatar,
+} from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./FarmerDashboard.css";
+
 import logo from "../assets/logo.png";
 import userIcon from "../assets/user.png";
 import toSellImg1 from "../assets/to-sell1.jpg";
@@ -11,10 +19,20 @@ import expertAdviceImg1 from "../assets/expert-advice1.jpg";
 import expertAdviceImg2 from "../assets/expert-advice2.png";
 import weatherForecastImg1 from "../assets/weather-forecast1.png";
 import weatherForecastImg2 from "../assets/weather-forecast2.png";
-import { Link } from "react-router-dom"; 
 
 const FarmerDashboard = () => {
   const navigate = useNavigate();
+  const [farmerName, setFarmerName] = useState("");
+
+  // ✅ Get farmer name from localStorage
+  useEffect(() => {
+    const storedName = localStorage.getItem("farmerName");
+    if (storedName) {
+      setFarmerName(storedName);
+    } else {
+      setFarmerName("Guest");
+    }
+  }, []);
 
   return (
     <div className="dashboard-container">
@@ -26,7 +44,7 @@ const FarmerDashboard = () => {
             <Dashboard className="menu-icon" />
             <span>Dashboard</span>
           </li>
-          <li className="menu-item" onClick={() => navigate("/FarSetting")}> {/* ✅ Updated */}
+          <li className="menu-item" onClick={() => navigate("/FarSetting")}>
             <Settings className="menu-icon" />
             <span>Setting</span>
           </li>
@@ -46,7 +64,7 @@ const FarmerDashboard = () => {
           </Typography>
           <div className="user-info">
             <Avatar src={userIcon} className="user-avatar" />
-            <Typography variant="body1" className="user-name">Mukesh Kumar</Typography>
+            <Typography variant="body1" className="user-name">{farmerName}</Typography>
           </div>
         </div>
 

@@ -27,7 +27,10 @@ exports.loginFarmer = (req, res) => {
   const { phone, password } = req.body;
 
   db.query("SELECT * FROM farmers WHERE phone = ?", [phone], (err, results) => {
-    if (err) return res.status(500).json({ error: "Database error" });
+    if (err) {
+      console.error("Login DB error:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
 
     if (results.length === 0) {
       return res.status(401).json({ error: "Farmer not found" });
@@ -39,10 +42,21 @@ exports.loginFarmer = (req, res) => {
       return res.status(401).json({ error: "Invalid password" });
     }
 
+    // ✅ Create JWT token
     const token = jwt.sign({ id: farmer.id, role: "farmer" }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 
-    res.json({ message: "Login successful", token });
+    // ✅ Return token and farmer info
+    res.json({
+      message: "Login successful",
+      token,
+      farmer: {
+        id: farmer.id,
+        name: farmer.name,
+        phone: farmer.phone,
+      },
+    });
   });
 };
+

@@ -33,6 +33,7 @@ import BuySetting from "./pages/BuySetting";
 import ToBuy from "./pages/ToBuy";
 import BuyHistory from "./pages/BuyHistory";
 import PrivateRoute from "./pages/PrivateRoute";
+import FarmerPrivateRoute from "./pages/FarmerPrivateRoute";
 
 const App = () => {
   return (
@@ -43,12 +44,12 @@ const App = () => {
         <Route path="/farmer" element={<Farmer />} />
         <Route path="/buyerlogin" element={<BuyerLogin />} />
         <Route path="/farmerlogin" element={<FarmerLogin />} />
-        <Route path="/farmerdashboard" element={<FarmerDashboard />} />
-        <Route path="/tosell" element={<ToSell />} />
-        <Route path="/farhistory" element={<FarHistory />} />
+        <Route path="/farmerdashboard" element={<FarmerPrivateRoute>  <FarmerDashboard /> </FarmerPrivateRoute>} />
+        <Route path="/tosell" element={<FarmerPrivateRoute>  <ToSell /> </FarmerPrivateRoute>} />
+        <Route path="/farhistory" element={<FarmerPrivateRoute><FarHistory /></FarmerPrivateRoute> } />
         <Route path="/expertadvice" element={<ExpertAdvice />} />
-        <Route path="/farweather" element={<FarWeather />} />
-        <Route path="/farsetting" element={<FarSetting />} />
+        <Route path="/farweather" element={<FarmerPrivateRoute> <FarWeather /></FarmerPrivateRoute> } />
+        <Route path="/farsetting" element={<FarmerPrivateRoute><FarSetting /> </FarmerPrivateRoute> } />
         <Route path="/buyerdashboard" element={<PrivateRoute> <BuyerDashboard /></PrivateRoute>}/>
         <Route path="/buysetting" element={<PrivateRoute>  <BuySetting /></PrivateRoute>} />
         <Route path="/tobuy" element={<PrivateRoute>  <ToBuy /> </PrivateRoute>} />

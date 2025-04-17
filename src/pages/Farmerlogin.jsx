@@ -18,7 +18,7 @@ import "./Farmerlogin.css";
 const FarmerLogin = () => {
   const [role, setRole] = useState("farmer");
   const [formData, setFormData] = useState({ phone: "", password: "" });
-  const [error, setError] = useState(""); // ✅ Error state
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -34,16 +34,22 @@ const FarmerLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+    setError("");
 
     try {
       const response = await api.post("/farmer/login", formData);
       console.log("Farmer logged in:", response.data);
+
+      // ✅ Save token and farmer name to localStorage
+      localStorage.setItem("farmerToken", response.data.token);
+      localStorage.setItem("farmerName", response.data.farmer.name);
+
+      // ✅ Navigate to dashboard
       navigate("/farmerdashboard");
     } catch (err) {
       const message = err.response?.data?.error || "Invalid credentials. Please try again.";
       console.error("Login failed:", message);
-      setError(message); // ✅ Show error in UI
+      setError(message);
     }
   };
 

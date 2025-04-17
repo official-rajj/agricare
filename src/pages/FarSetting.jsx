@@ -77,13 +77,17 @@ const FarSetting = () => {
             Save changes
           </Button>
           <Button 
-            variant="contained" 
-            color="error" 
-            className="logoutButton" 
-            onClick={() => navigate("/FarmerLogin")} // ✅ Navigate to Login
-          >
-            Logout
-          </Button>
+  variant="contained" 
+  color="error" 
+  className="logoutButton" 
+  onClick={() => {
+    localStorage.removeItem("farmerToken");
+    localStorage.removeItem("farmerName");
+    navigate("/farmerlogin");
+  }}
+>
+  Logout
+</Button>
         </div>
       </div>
     </div>
