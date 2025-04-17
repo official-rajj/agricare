@@ -32,6 +32,7 @@ import BuyerDashboard from "./pages/BuyerDashboard";
 import BuySetting from "./pages/BuySetting";
 import ToBuy from "./pages/ToBuy";
 import BuyHistory from "./pages/BuyHistory";
+import PrivateRoute from "./pages/PrivateRoute";
 
 const App = () => {
   return (
@@ -48,10 +49,10 @@ const App = () => {
         <Route path="/expertadvice" element={<ExpertAdvice />} />
         <Route path="/farweather" element={<FarWeather />} />
         <Route path="/farsetting" element={<FarSetting />} />
-        <Route path="/buyerdashboard" element={<BuyerDashboard />} />
-        <Route path="/buysetting" element={<BuySetting />} />
-        <Route path="/tobuy" element={<ToBuy />} />
-        <Route path="/BuyHistory" element={<BuyHistory />} />
+        <Route path="/buyerdashboard" element={<PrivateRoute> <BuyerDashboard /></PrivateRoute>}/>
+        <Route path="/buysetting" element={<PrivateRoute>  <BuySetting /></PrivateRoute>} />
+        <Route path="/tobuy" element={<PrivateRoute>  <ToBuy /> </PrivateRoute>} />
+        <Route path="/BuyHistory" element={<PrivateRoute>  <BuyHistory /> </PrivateRoute>} />
       </Routes>
     </Router>
   );

@@ -79,13 +79,18 @@ const BuySetting = () => {
             Save changes
           </Button>
           <Button 
-            variant="contained" 
-            color="error" 
-            className={styles.logoutButton} 
-            onClick={() => navigate("/BuyerLogin")}
-          >
-            Logout
-          </Button>
+  variant="contained" 
+  color="error" 
+  className={styles.logoutButton} 
+  onClick={() => {
+    localStorage.removeItem("buyerToken");
+    localStorage.removeItem("buyerName");
+    navigate("/buyerlogin");
+  }}
+>
+  Logout
+</Button>
+
         </div>
       </div>
     </div>
