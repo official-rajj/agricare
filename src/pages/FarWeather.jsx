@@ -1,9 +1,16 @@
-import React, { useState } from "react";
-import { Container, Typography, Avatar, TextField, Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Typography,
+  Avatar,
+  TextField,
+  Button,
+} from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import { fetchWeather } from "../api/weatherService"; // Import fetchWeather function
+import { fetchWeather } from "../api/weatherService";
 import "./FarWeather.css";
+
 import logo from "../assets/logo.png";
 import userIcon from "../assets/user.png";
 import thunderstormIcon from "../assets/thunderstorm.png";
@@ -11,10 +18,15 @@ import potatoImage from "../assets/potatoes.png";
 
 const FarWeather = () => {
   const navigate = useNavigate();
-  const [city, setCity] = useState(""); // Store user input city
-  const [weather, setWeather] = useState(null); // Store weather data
+  const [city, setCity] = useState("");
+  const [weather, setWeather] = useState(null);
+  const [farmerName, setFarmerName] = useState(""); // 👈 for storing logged-in farmer name
 
-  // Function to fetch weather data
+  useEffect(() => {
+    const name = localStorage.getItem("farmerName");
+    setFarmerName(name || "Farmer");
+  }, []);
+
   const getWeatherData = async () => {
     if (!city) return;
     const data = await fetchWeather(city);
@@ -63,13 +75,17 @@ const FarWeather = () => {
           </Typography>
           <div className="user-info">
             <Avatar src={userIcon} className="user-avatar" />
-            <Typography variant="body1" className="user-name">Mukesh Kumar</Typography>
+            <Typography variant="body1" className="user-name">
+              {farmerName}
+            </Typography>
           </div>
         </div>
 
         {/* Weather Forecast Section */}
         <Container className="weatherContainer">
-          <Typography variant="h5" className="weatherTitle">Weather Forecast</Typography>
+          <Typography variant="h5" className="weatherTitle">
+            Weather Forecast
+          </Typography>
 
           {/* City Input */}
           <div className="cityInput">
@@ -88,9 +104,15 @@ const FarWeather = () => {
           {/* Weather Details */}
           {weather && (
             <div className="weatherDetails">
-              <Typography variant="h6" className="locationName">Selected City: {city}</Typography>
-              <Typography variant="h3" className="temperature">{weather.temp}°C</Typography>
-              <Typography variant="body1" className="weatherStatus">{weather.condition}</Typography>
+              <Typography variant="h6" className="locationName">
+                Selected City: {city}
+              </Typography>
+              <Typography variant="h3" className="temperature">
+                {weather.temp}°C
+              </Typography>
+              <Typography variant="body1" className="weatherStatus">
+                {weather.condition}
+              </Typography>
               <img src={thunderstormIcon} alt="Weather Icon" className="weatherIcon" />
               <div className="weatherStats">
                 <div className="weatherStat">🌬 {weather.wind} m/s Wind</div>
@@ -98,7 +120,9 @@ const FarWeather = () => {
                 <div className="weatherStat">☔ {weather.rain}</div>
               </div>
               <div className="weatherAdvice">
-                <Typography variant="h6" className="adviceTitle">Perfect Weather for Potatoes!</Typography>
+                <Typography variant="h6" className="adviceTitle">
+                  Perfect Weather for Potatoes!
+                </Typography>
                 <Typography variant="body2" className="adviceText">
                   The current temperature and moisture levels support healthy potato growth. Just ensure proper drainage to avoid excess water buildup.
                 </Typography>
@@ -109,7 +133,9 @@ const FarWeather = () => {
         </Container>
 
         {/* Back Button */}
-        <button className="backButton" onClick={() => navigate(-1)}>Go Back</button>
+        <button className="backButton" onClick={() => navigate(-1)}>
+          Go Back
+        </button>
       </div>
     </div>
   );

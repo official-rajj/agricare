@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Typography, Avatar, Button, TextField } from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,16 @@ import userIcon from "../assets/user.png";
 
 const BuySetting = () => {
   const navigate = useNavigate();
+  const [buyerName, setBuyerName] = useState("");
+
+  useEffect(() => {
+    const storedName = localStorage.getItem("buyerName");
+    if (storedName) {
+      setBuyerName(storedName);
+    } else {
+      setBuyerName("Guest");
+    }
+  }, []);
 
   return (
     <div className={styles.buySettingContainer}>
@@ -36,10 +46,10 @@ const BuySetting = () => {
       <div className={styles.mainContent}>
         {/* Header */}
         <div className={styles.centerTitle}>
-  <Typography variant="h4" className={styles.title}>
-    <span className={styles.highlight}>Natural</span> & Organic Market
-  </Typography>
-</div>
+          <Typography variant="h4" className={styles.title}>
+            <span className={styles.highlight}>Natural</span> & Organic Market
+          </Typography>
+        </div>
 
         {/* Profile Picture Section */}
         <Container className={styles.profileContainer}>
@@ -54,7 +64,7 @@ const BuySetting = () => {
         {/* Profile Information */}
         <Container className={styles.infoContainer}>
           <Typography variant="h6" className={styles.sectionTitle}>Profile name</Typography>
-          <TextField variant="outlined" fullWidth defaultValue="Rahul Sharma" />
+          <TextField variant="outlined" fullWidth value={buyerName} disabled />
 
           <Typography variant="h6" className={styles.sectionTitle}>Status</Typography>
           <TextField variant="outlined" fullWidth defaultValue="Buyer" disabled />
@@ -65,7 +75,8 @@ const BuySetting = () => {
             multiline
             rows={3}
             fullWidth
-            defaultValue="As a buyer on AgriCare, I can purchase fresh crops directly from farmers, ensuring quality produce at fair prices."
+            value="As a buyer on AgriCare, I can purchase fresh crops directly from farmers, ensuring quality produce at fair prices."
+            disabled
           />
         </Container>
 
@@ -79,18 +90,17 @@ const BuySetting = () => {
             Save changes
           </Button>
           <Button 
-  variant="contained" 
-  color="error" 
-  className={styles.logoutButton} 
-  onClick={() => {
-    localStorage.removeItem("buyerToken");
-    localStorage.removeItem("buyerName");
-    navigate("/buyerlogin");
-  }}
->
-  Logout
-</Button>
-
+            variant="contained" 
+            color="error" 
+            className={styles.logoutButton} 
+            onClick={() => {
+              localStorage.removeItem("buyerToken");
+              localStorage.removeItem("buyerName");
+              navigate("/buyerlogin");
+            }}
+          >
+            Logout
+          </Button>
         </div>
       </div>
     </div>

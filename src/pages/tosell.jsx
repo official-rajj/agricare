@@ -1,19 +1,34 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { Container, Typography, Button, Card, CardMedia, CardContent, Avatar, IconButton, TextField } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  Typography,
+  Button,
+  Card,
+  CardMedia,
+  CardContent,
+  Avatar,
+  IconButton,
+  TextField,
+} from "@mui/material";
 import { ArrowBack, Add, CameraAlt, Close } from "@mui/icons-material";
 import "./ToSell.css";
 import logo from "../assets/logo.png";
 import userIcon from "../assets/user.png";
 
 const ToSell = () => {
-  const navigate = useNavigate(); // Initialize navigate function
-
+  const navigate = useNavigate();
   const [image, setImage] = useState(null);
   const [showDescriptionInput, setShowDescriptionInput] = useState(false);
   const [description, setDescription] = useState("");
+  const [farmerName, setFarmerName] = useState("");
 
-  // Handle Image Selection
+  // ✅ Load logged-in farmer's name from localStorage
+  useEffect(() => {
+    const name = localStorage.getItem("farmerName");
+    setFarmerName(name || "Farmer");
+  }, []);
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     if (file) {
@@ -21,17 +36,14 @@ const ToSell = () => {
     }
   };
 
-  // Remove Selected Image
   const handleRemoveImage = () => {
     setImage(null);
   };
 
-  // Toggle Description Input
   const toggleDescriptionInput = () => {
     setShowDescriptionInput(true);
   };
 
-  // Remove Description Input
   const removeDescriptionInput = () => {
     setShowDescriptionInput(false);
     setDescription("");
@@ -64,11 +76,13 @@ const ToSell = () => {
           </Typography>
           <div className="user-info">
             <Avatar src={userIcon} className="user-avatar" />
-            <Typography variant="body1" className="user-name">Mukesh Kumar</Typography>
+            <Typography variant="body1" className="user-name">
+              {farmerName}
+            </Typography>
           </div>
         </div>
 
-        {/* Sell Your Product Section */}
+        {/* Sell Product Section */}
         <Container className="sell-product-container">
           <Typography variant="h5" className="section-title">Sell Your Product</Typography>
           <Card className="product-card">
@@ -76,7 +90,13 @@ const ToSell = () => {
             <div className="image-upload-container">
               {image ? (
                 <>
-                  <CardMedia component="img" height="150" image={image} alt="Product" className="product-image" />
+                  <CardMedia
+                    component="img"
+                    height="150"
+                    image={image}
+                    alt="Product"
+                    className="product-image"
+                  />
                   <IconButton className="remove-image-button" onClick={handleRemoveImage}>
                     <Close />
                   </IconButton>
@@ -123,18 +143,18 @@ const ToSell = () => {
               color="secondary"
               className="back-button"
               startIcon={<ArrowBack />}
-              onClick={() => navigate("/farmerdashboard")} // Navigate to farmerdashboard
+              onClick={() => navigate("/farmerdashboard")}
             >
               Go Back
             </Button>
             <Button
-  variant="contained"
-  color="success"
-  className="done-button"
-  onClick={() => navigate("/farhistory", { state: { image, description } })} // ✅ Pass image & description
->
-  Done
-</Button>
+              variant="contained"
+              color="success"
+              className="done-button"
+              onClick={() => navigate("/farhistory", { state: { image, description } })}
+            >
+              Done
+            </Button>
           </div>
         </Container>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './ToBuy.module.css';
 import logo from '../assets/logo.png';
@@ -8,21 +8,22 @@ const ToBuy = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // ✅ Destructure product data from location.state
   const { image, price, name } = location.state || {};
-
   const [quantity, setQuantity] = useState(1);
+  const [buyerName, setBuyerName] = useState("Buyer");
 
-  const handleIncrement = () => {
-    setQuantity(prev => prev + 1);
-  };
+  // ✅ Load buyer name from localStorage
+  useEffect(() => {
+    const storedName = localStorage.getItem("buyerName");
+    if (storedName) setBuyerName(storedName);
+  }, []);
 
+  const handleIncrement = () => setQuantity(prev => prev + 1);
   const handleDecrement = () => {
     if (quantity > 1) setQuantity(prev => prev - 1);
   };
 
   const handleDone = () => {
-    // ✅ Navigate to BuyHistory with data
     navigate("/BuyHistory", {
       state: {
         image,
@@ -41,15 +42,15 @@ const ToBuy = () => {
           <img src={logo} alt="Logo" className={styles.logoImg} />
         </div>
         <ul className={styles.navList}>
-          <li className={styles.navItem}>
+          <li className={styles.navItem} onClick={() => navigate("/buyerdashboard")}>
             <Dashboard className={styles.menuIcon} />
             <span>Dashboard</span>
           </li>
-          <li className={styles.navItem}>
+          <li className={styles.navItem} onClick={() => navigate("/BuySetting")}>
             <Settings className={styles.menuIcon} />
             <span>Setting</span>
           </li>
-          <li className={styles.navItem}>
+          <li className={styles.navItem} onClick={() => navigate("/BuyHistory")}>
             <History className={styles.menuIcon} />
             <span>History</span>
           </li>
@@ -64,7 +65,7 @@ const ToBuy = () => {
           </span>
           <div className={styles.profile}>
             <div className={styles.avatar}>👤</div>
-            <span>Abhi Sharma</span>
+            <span>{buyerName}</span> {/* ✅ Dynamic buyer name */}
           </div>
         </header>
 

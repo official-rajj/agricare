@@ -1,5 +1,11 @@
-import React from "react";
-import { Container, Typography, Avatar, Button, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import {
+  Container,
+  Typography,
+  Avatar,
+  Button,
+  TextField,
+} from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import "./FarSetting.css";
@@ -8,6 +14,13 @@ import userIcon from "../assets/user.png";
 
 const FarSetting = () => {
   const navigate = useNavigate();
+  const [farmerName, setFarmerName] = useState("");
+
+  // Load farmer name from localStorage
+  useEffect(() => {
+    const name = localStorage.getItem("farmerName");
+    setFarmerName(name || "Farmer");
+  }, []);
 
   return (
     <div className="farSettingContainer">
@@ -52,10 +65,10 @@ const FarSetting = () => {
         {/* Profile Information */}
         <Container className="infoContainer">
           <Typography variant="h6" className="sectionTitle">Profile name</Typography>
-          <TextField variant="outlined" fullWidth defaultValue="Mukesh Kumar" />
+          <TextField variant="outlined" fullWidth value={farmerName} disabled />
 
           <Typography variant="h6" className="sectionTitle">Status</Typography>
-          <TextField variant="outlined" fullWidth defaultValue="Farmer" disabled />
+          <TextField variant="outlined" fullWidth value="Farmer" disabled />
 
           <Typography variant="h6" className="sectionTitle">About me</Typography>
           <TextField
@@ -63,7 +76,8 @@ const FarSetting = () => {
             multiline
             rows={3}
             fullWidth
-            defaultValue="At AgriCare, I can sell my crops—be it fruits, vegetables, pulses, wheat, or rice—without the interference of middlemen, ensuring I earn a fair profit."
+            disabled
+            value="At AgriCare, I can sell my crops—be it fruits, vegetables, pulses, wheat, or rice—without the interference of middlemen, ensuring I earn a fair profit."
           />
         </Container>
 
@@ -72,22 +86,22 @@ const FarSetting = () => {
           <Button 
             variant="contained" 
             className="saveButton" 
-            onClick={() => navigate("/FarmerDashboard")} // ✅ Navigate to Dashboard
+            onClick={() => navigate("/FarmerDashboard")}
           >
             Save changes
           </Button>
-          <Button 
-  variant="contained" 
-  color="error" 
-  className="logoutButton" 
-  onClick={() => {
-    localStorage.removeItem("farmerToken");
-    localStorage.removeItem("farmerName");
-    navigate("/farmerlogin");
-  }}
->
-  Logout
-</Button>
+          <Button
+            variant="contained"
+            color="error"
+            className="logoutButton"
+            onClick={() => {
+              localStorage.removeItem("farmerToken");
+              localStorage.removeItem("farmerName");
+              navigate("/farmerlogin");
+            }}
+          >
+            Logout
+          </Button>
         </div>
       </div>
     </div>

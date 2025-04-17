@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Typography, Card, CardContent, CardMedia, Avatar, Box } from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -10,9 +10,15 @@ const FarHistory = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // ✅ Get the selected image and description from navigation state
   const selectedImage = location.state?.image;
   const description = location.state?.description;
+
+  const [farmerName, setFarmerName] = useState("");
+
+  useEffect(() => {
+    const name = localStorage.getItem("farmerName");
+    setFarmerName(name || "Farmer");
+  }, []);
 
   return (
     <div className={styles.farhistoryContainer}>
@@ -44,7 +50,7 @@ const FarHistory = () => {
           </Typography>
           <div className={styles.userInfo}>
             <Avatar src={userIcon} className={styles.userAvatar} />
-            <Typography variant="body1" className={styles.userName}>Mukesh Kumar</Typography>
+            <Typography variant="body1" className={styles.userName}>{farmerName}</Typography>
           </div>
         </div>
 

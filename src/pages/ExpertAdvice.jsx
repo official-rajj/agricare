@@ -1,18 +1,28 @@
-import React, { useState } from "react";
-import { Container, Typography, Avatar, Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import {
+  Container,
+  Typography,
+  Avatar,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Button,
+} from "@mui/material";
 import { Dashboard, Settings, History } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import "./ExpertAdvice.css";
-import logo from "../assets/logo.png"; 
-import userIcon from "../assets/user.png"; 
-import expert1 from "../assets/expert1.png"; 
-import expert2 from "../assets/expert2.png"; 
+
+import logo from "../assets/logo.png";
+import userIcon from "../assets/user.png";
+import expert1 from "../assets/expert1.png";
+import expert2 from "../assets/expert2.png";
 import expert3 from "../assets/expert3.png";
 import expert4 from "../assets/expert4.png";
 
 const ExpertAdvice = () => {
   const navigate = useNavigate();
-  const [open, setOpen] = useState(false); // State for dialog
+  const [open, setOpen] = useState(false);
+  const [farmerName, setFarmerName] = useState(""); // 👈 state to hold farmer name
 
   const experts = [
     {
@@ -41,12 +51,16 @@ const ExpertAdvice = () => {
     },
   ];
 
-  // Function to open dialog
+  // ✅ Fetch farmer name from localStorage
+  useEffect(() => {
+    const name = localStorage.getItem("farmerName");
+    setFarmerName(name || "Farmer");
+  }, []);
+
   const handleOpenDialog = () => {
     setOpen(true);
   };
 
-  // Function to close dialog
   const handleCloseDialog = () => {
     setOpen(false);
   };
@@ -83,7 +97,7 @@ const ExpertAdvice = () => {
           </Typography>
           <div className="user-info">
             <Avatar src={userIcon} className="user-avatar" />
-            <Typography variant="body1" className="user-name">Mukesh Kumar</Typography>
+            <Typography variant="body1" className="user-name">{farmerName}</Typography>
           </div>
         </div>
 
@@ -116,7 +130,12 @@ const ExpertAdvice = () => {
         <DialogTitle>Message</DialogTitle>
         <DialogContent>
           <Typography variant="body1">He will contact you soon!</Typography>
-          <Button onClick={handleCloseDialog} variant="contained" color="primary" style={{ marginTop: "10px" }}>
+          <Button
+            onClick={handleCloseDialog}
+            variant="contained"
+            color="primary"
+            style={{ marginTop: "10px" }}
+          >
             OK
           </Button>
         </DialogContent>
