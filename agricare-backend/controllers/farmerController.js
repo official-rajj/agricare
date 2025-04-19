@@ -1,6 +1,7 @@
 const db = require("../db");
 const jwt = require("jsonwebtoken");
 
+// Farmer Registration
 exports.registerFarmer = (req, res) => {
   const { name, phone, password } = req.body;
 
@@ -23,6 +24,7 @@ exports.registerFarmer = (req, res) => {
   );
 };
 
+// Farmer Login
 exports.loginFarmer = (req, res) => {
   const { phone, password } = req.body;
 
@@ -42,12 +44,10 @@ exports.loginFarmer = (req, res) => {
       return res.status(401).json({ error: "Invalid password" });
     }
 
-    // ✅ Create JWT token
     const token = jwt.sign({ id: farmer.id, role: "farmer" }, process.env.JWT_SECRET, {
       expiresIn: "1d",
     });
 
-    // ✅ Return token and farmer info
     res.json({
       message: "Login successful",
       token,
@@ -60,3 +60,21 @@ exports.loginFarmer = (req, res) => {
   });
 };
 
+// ✅ Save Farmer Sell Details (used in ToSell.jsx)
+exports.saveSellDetails = (req, res) => {
+  const { farmerName, description } = req.body;
+
+  if (!farmerName || !description) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const sql = "INSERT INTO farmersell (farmerName, description) VALUES (?, ?)";
+  db.query(sql, [farmerName, description], (err, result) => {
+    if (err) {
+      console.error("Error inserting sell details:", err);
+      return res.status(500).json({ error: "Failed to save sell details" });
+    }
+
+    res.status(201).json({ message: "Sell details saved successfully" });
+  });
+};

@@ -23,7 +23,6 @@ const ToSell = () => {
   const [description, setDescription] = useState("");
   const [farmerName, setFarmerName] = useState("");
 
-  // ✅ Load logged-in farmer's name from localStorage
   useEffect(() => {
     const name = localStorage.getItem("farmerName");
     setFarmerName(name || "Farmer");
@@ -49,21 +48,47 @@ const ToSell = () => {
     setDescription("");
   };
 
+  // ✅ Submit data to backend using fetch and correct endpoint
+  const handleDone = async () => {
+    try {
+      if (!description.trim()) {
+        alert("Please enter a description.");
+        return;
+      }
+
+      const data = { farmerName, description };
+
+      const response = await fetch("http://localhost:5000/api/farmer/sell", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("Product description submitted successfully!");
+        navigate("/farhistory", { state: { image, description } });
+      } else {
+        alert(result.error || "Failed to submit. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error saving sell details:", error);
+      alert("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <div className="tosell-container">
       {/* Sidebar */}
       <div className="sidebar">
         <img src={logo} alt="AgriCare Logo" className="logo" />
         <ul className="sidebar-menu">
-          <li className="menu-item active">
-            <span>Dashboard</span>
-          </li>
-          <li className="menu-item">
-            <span>Setting</span>
-          </li>
-          <li className="menu-item">
-            <span>History</span>
-          </li>
+          <li className="menu-item active"><span>Dashboard</span></li>
+          <li className="menu-item"><span>Setting</span></li>
+          <li className="menu-item"><span>History</span></li>
         </ul>
       </div>
 
@@ -84,7 +109,9 @@ const ToSell = () => {
 
         {/* Sell Product Section */}
         <Container className="sell-product-container">
-          <Typography variant="h5" className="section-title">Sell Your Product</Typography>
+          <Typography variant="h5" className="section-title">
+            Sell Your Product
+          </Typography>
           <Card className="product-card">
             {/* Image Upload Section */}
             <div className="image-upload-container">
@@ -97,13 +124,21 @@ const ToSell = () => {
                     alt="Product"
                     className="product-image"
                   />
-                  <IconButton className="remove-image-button" onClick={handleRemoveImage}>
+                  <IconButton
+                    className="remove-image-button"
+                    onClick={handleRemoveImage}
+                  >
                     <Close />
                   </IconButton>
                 </>
               ) : (
                 <>
-                  <input type="file" id="upload-image" hidden onChange={handleImageChange} />
+                  <input
+                    type="file"
+                    id="upload-image"
+                    hidden
+                    onChange={handleImageChange}
+                  />
                   <label htmlFor="upload-image" className="upload-label">
                     <CameraAlt className="upload-icon" />
                   </label>
@@ -124,12 +159,19 @@ const ToSell = () => {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                   />
-                  <IconButton className="remove-description-button" onClick={removeDescriptionInput}>
+                  <IconButton
+                    className="remove-description-button"
+                    onClick={removeDescriptionInput}
+                  >
                     <Close />
                   </IconButton>
                 </div>
               ) : (
-                <Button variant="text" startIcon={<Add />} onClick={toggleDescriptionInput}>
+                <Button
+                  variant="text"
+                  startIcon={<Add />}
+                  onClick={toggleDescriptionInput}
+                >
                   About
                 </Button>
               )}
@@ -151,7 +193,7 @@ const ToSell = () => {
               variant="contained"
               color="success"
               className="done-button"
-              onClick={() => navigate("/farhistory", { state: { image, description } })}
+              onClick={handleDone}
             >
               Done
             </Button>
