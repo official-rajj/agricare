@@ -21,13 +21,17 @@ const BuyHistory = () => {
   const selectedImage = location.state?.image;
   const name = location.state?.name;
   const price = location.state?.price;
-  const quantity = location.state?.quantity;
+  const quantity = location.state?.quantity || 1;
 
   // ✅ Get buyer's name from localStorage
   useEffect(() => {
     const storedName = localStorage.getItem("buyerName");
     if (storedName) setBuyerName(storedName);
   }, []);
+
+  // ✅ Calculate total price
+  const numericPrice = parseFloat(price?.match(/\d+(\.\d+)?/));
+  const totalPrice = numericPrice * quantity;
 
   return (
     <div className={styles.buyHistoryContainer}>
@@ -59,7 +63,7 @@ const BuyHistory = () => {
           </span>
           <div className={styles.profile}>
             <div className={styles.avatar}>👤</div>
-            <span>{buyerName}</span> {/* ✅ Dynamic Buyer Name */}
+            <span>{buyerName}</span>
           </div>
         </header>
 
@@ -92,7 +96,10 @@ const BuyHistory = () => {
                   <strong>Price:</strong> {price || "-"}
                 </Typography>
                 <Typography variant="body1" className={styles.descriptionText}>
-                  <strong>Quantity:</strong> {quantity || 1}
+                  <strong>Quantity:</strong> {quantity}
+                </Typography>
+                <Typography variant="body1" className={styles.descriptionText}>
+                  <strong>Total Price:</strong> ₹{totalPrice.toFixed(2)}
                 </Typography>
               </CardContent>
             </Card>

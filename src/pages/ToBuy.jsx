@@ -18,9 +18,9 @@ const ToBuy = () => {
     if (storedName) setBuyerName(storedName);
   }, []);
 
-  const handleIncrement = () => setQuantity(prev => prev + 1);
+  const handleIncrement = () => setQuantity((prev) => prev + 1);
   const handleDecrement = () => {
-    if (quantity > 1) setQuantity(prev => prev - 1);
+    if (quantity > 1) setQuantity((prev) => prev - 1);
   };
 
   const handleDone = () => {
@@ -34,6 +34,9 @@ const ToBuy = () => {
     });
   };
 
+  const numericPrice = parseFloat(price?.match(/\d+(\.\d+)?/)); // Extract number like 40 or 40.5
+  const totalPrice = numericPrice * quantity;
+  
   return (
     <div className={styles.container}>
       {/* Sidebar */}
@@ -65,7 +68,7 @@ const ToBuy = () => {
           </span>
           <div className={styles.profile}>
             <div className={styles.avatar}>👤</div>
-            <span>{buyerName}</span> {/* ✅ Dynamic buyer name */}
+            <span>{buyerName}</span>
           </div>
         </header>
 
@@ -81,12 +84,16 @@ const ToBuy = () => {
           )}
 
           <div className={styles.controls}>
-            <button className={styles.addMore}>Add more ➕</button>
             <div className={styles.priceBox}>
               <button onClick={handleDecrement}>➖</button>
-              <span className={styles.price}>{price}</span>
+              <span className={styles.price}>₹{price}</span>
               <span>{quantity}</span>
               <button onClick={handleIncrement}>➕</button>
+            </div>
+
+            {/* ✅ Show total price */}
+            <div className={styles.totalPrice}>
+              <strong>Total Price: ₹{totalPrice.toFixed(2)}</strong>
             </div>
           </div>
 
