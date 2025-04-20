@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import {
   Container,
   Typography,
@@ -22,7 +23,8 @@ import expert4 from "../assets/expert4.png";
 const ExpertAdvice = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [farmerName, setFarmerName] = useState(""); // 👈 state to hold farmer name
+  const [selectedExpert, setSelectedExpert] = useState("");
+  const [farmerName, setFarmerName] = useState("");
 
   const experts = [
     {
@@ -51,14 +53,25 @@ const ExpertAdvice = () => {
     },
   ];
 
-  // ✅ Fetch farmer name from localStorage
   useEffect(() => {
     const name = localStorage.getItem("farmerName");
     setFarmerName(name || "Farmer");
   }, []);
 
-  const handleOpenDialog = () => {
-    setOpen(true);
+  const handleChatRequest = async (expertName) => {
+    try {
+      setSelectedExpert(expertName);
+      setOpen(true);
+
+      await axios.post("http://localhost:5000/api/farmer/chat", {
+        farmerName,
+        expertName,
+      });
+
+      console.log("Chat request sent successfully");
+    } catch (error) {
+      console.error("Error sending chat request:", error);
+    }
   };
 
   const handleCloseDialog = () => {
@@ -115,7 +128,12 @@ const ExpertAdvice = () => {
                   <Typography variant="body2" className="expertLocation">From {expert.location}</Typography>
                   <Typography variant="body2" className="expertExperience">Experience: {expert.experience}</Typography>
                 </div>
-                <button className="chatButton" onClick={handleOpenDialog}>Chat</button>
+                <button
+                  className="chatButton"
+                  onClick={() => handleChatRequest(expert.name)}
+                >
+                  Chat
+                </button>
               </div>
             ))}
           </div>

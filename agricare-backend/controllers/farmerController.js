@@ -1,7 +1,7 @@
 const db = require("../db");
 const jwt = require("jsonwebtoken");
 
-// Farmer Registration
+// ✅ Farmer Registration
 exports.registerFarmer = (req, res) => {
   const { name, phone, password } = req.body;
 
@@ -24,7 +24,7 @@ exports.registerFarmer = (req, res) => {
   );
 };
 
-// Farmer Login
+// ✅ Farmer Login
 exports.loginFarmer = (req, res) => {
   const { phone, password } = req.body;
 
@@ -76,5 +76,24 @@ exports.saveSellDetails = (req, res) => {
     }
 
     res.status(201).json({ message: "Sell details saved successfully" });
+  });
+};
+
+// ✅ Save Farmer Chat (used in ExpertAdvice.jsx)
+exports.saveFarmerChat = (req, res) => {
+  const { farmerName, expertName } = req.body;
+
+  if (!farmerName || !expertName) {
+    return res.status(400).json({ error: "Both farmerName and expertName are required" });
+  }
+
+  const sql = "INSERT INTO farmerstalk (farmer_name, expert_name) VALUES (?, ?)";
+  db.query(sql, [farmerName, expertName], (err, result) => {
+    if (err) {
+      console.error("Error saving chat:", err);
+      return res.status(500).json({ error: "Failed to save chat record" });
+    }
+
+    res.status(201).json({ message: "Chat record saved successfully" });
   });
 };
