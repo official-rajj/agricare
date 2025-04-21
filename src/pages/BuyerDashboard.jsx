@@ -152,7 +152,7 @@ const BuyerDashboard = () => {
                     className={styles.buyButton}
                     onClick={() =>
                       navigate("/tobuy", {
-                        state: { image: product.image, price: product.price },
+                        state: { image: product.image, price: product.price, name: product.name }
                       })
                     }
                   >

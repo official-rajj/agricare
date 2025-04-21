@@ -36,7 +36,7 @@ const ToBuy = () => {
 
   const numericPrice = parseFloat(price?.match(/\d+(\.\d+)?/)); // Extract number like 40 or 40.5
   const totalPrice = numericPrice * quantity;
-  
+
   return (
     <div className={styles.container}>
       {/* Sidebar */}
@@ -79,8 +79,12 @@ const ToBuy = () => {
             &nbsp;Current Location ( Cash on Delivery )
           </p>
 
+          {/* Image and item name */}
           {image && (
-            <img src={image} alt={name} className={styles.image} />
+            <>
+              <img src={image} alt={name} className={styles.image} />
+              <h3 className={styles.itemName}>Item: {name}</h3>
+            </>
           )}
 
           <div className={styles.controls}>
